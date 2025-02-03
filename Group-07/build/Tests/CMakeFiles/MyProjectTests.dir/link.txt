@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/MyProjectTests.dir/AuditedArrayTest.cpp.o -o MyProjectTests  ../Team07Library/libTeam07Library.a -lpthread /usr/local/lib64/libgtest_main.a /usr/local/lib64/libgtest.a

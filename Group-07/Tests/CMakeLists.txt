@@ -1,35 +1,24 @@
-#Used Professor Owen's CMake files from CSE 335 for our project
-project(Tests)
+# CMakeLists.txt for the Tests directory
+cmake_minimum_required(VERSION 3.20)
 
-set(TEST_FILES
-    AuditedArrayTest.cpp
-    DataFileManagerTest.cpp
-        OutputLogTest.cpp
-        SchedulerTest.cpp
-        SerializerTest.cpp
-        gtest_main.cpp
+# Include directories
+include_directories(${CMAKE_SOURCE_DIR}/Team07Library)
+
+# Define source files for tests
+set(TEST_SOURCES
+    ${CMAKE_SOURCE_DIR}/Tests/AuditedArrayTest.cpp
+    # Add other test files here
 )
 
-# Get Google Tests
-include(FetchContent)
-FetchContent_Declare(
-        googletest
-        GIT_REPOSITORY https://github.com/google/googletest.git
-        GIT_TAG release-1.11.0
-)
+# Add the test executable
+add_executable(MyProjectTests ${TEST_SOURCES})
 
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
+# Link Google Test libraries and pthread
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+target_link_libraries(MyProjectTests ${APPLICATION_LIBRARY} GTest::GTest GTest::Main pthread)
 
-# Include Google Test directories
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+# Enable testing
+enable_testing()
+add_test(NAME MyProjectTests COMMAND MyProjectTests)
 
-# adding the Tests_run target
-add_executable(Tests_run ${TEST_FILES})
-
-# linking Tests_run with library which will be tested and wxWidgets
-target_link_libraries(Tests_run ${APPLICATION_LIBRARY} ${wxWidgets_LIBRARIES} )
-
-# linking Tests_run with the Google Test libraries
-target_link_libraries(Tests_run gtest)

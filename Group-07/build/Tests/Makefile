@@ -85,51 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Tests//CMakeFiles/progress.marks
@@ -162,25 +117,25 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-Tests/CMakeFiles/Tests_run.dir/rule:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Tests/CMakeFiles/Tests_run.dir/rule
-.PHONY : Tests/CMakeFiles/Tests_run.dir/rule
+Tests/CMakeFiles/MyProjectTests.dir/rule:
+	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Tests/CMakeFiles/MyProjectTests.dir/rule
+.PHONY : Tests/CMakeFiles/MyProjectTests.dir/rule
 
 # Convenience name for target.
-Tests_run: Tests/CMakeFiles/Tests_run.dir/rule
-.PHONY : Tests_run
+MyProjectTests: Tests/CMakeFiles/MyProjectTests.dir/rule
+.PHONY : MyProjectTests
 
 # fast build rule for target.
-Tests_run/fast:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/build
-.PHONY : Tests_run/fast
+MyProjectTests/fast:
+	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/MyProjectTests.dir/build.make Tests/CMakeFiles/MyProjectTests.dir/build
+.PHONY : MyProjectTests/fast
 
 AuditedArrayTest.o: AuditedArrayTest.cpp.o
 .PHONY : AuditedArrayTest.o
 
 # target to build an object file
 AuditedArrayTest.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/AuditedArrayTest.cpp.o
+	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/MyProjectTests.dir/build.make Tests/CMakeFiles/MyProjectTests.dir/AuditedArrayTest.cpp.o
 .PHONY : AuditedArrayTest.cpp.o
 
 AuditedArrayTest.i: AuditedArrayTest.cpp.i
@@ -188,7 +143,7 @@ AuditedArrayTest.i: AuditedArrayTest.cpp.i
 
 # target to preprocess a source file
 AuditedArrayTest.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/AuditedArrayTest.cpp.i
+	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/MyProjectTests.dir/build.make Tests/CMakeFiles/MyProjectTests.dir/AuditedArrayTest.cpp.i
 .PHONY : AuditedArrayTest.cpp.i
 
 AuditedArrayTest.s: AuditedArrayTest.cpp.s
@@ -196,128 +151,8 @@ AuditedArrayTest.s: AuditedArrayTest.cpp.s
 
 # target to generate assembly for a file
 AuditedArrayTest.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/AuditedArrayTest.cpp.s
+	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/MyProjectTests.dir/build.make Tests/CMakeFiles/MyProjectTests.dir/AuditedArrayTest.cpp.s
 .PHONY : AuditedArrayTest.cpp.s
-
-DataFileManagerTest.o: DataFileManagerTest.cpp.o
-.PHONY : DataFileManagerTest.o
-
-# target to build an object file
-DataFileManagerTest.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/DataFileManagerTest.cpp.o
-.PHONY : DataFileManagerTest.cpp.o
-
-DataFileManagerTest.i: DataFileManagerTest.cpp.i
-.PHONY : DataFileManagerTest.i
-
-# target to preprocess a source file
-DataFileManagerTest.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/DataFileManagerTest.cpp.i
-.PHONY : DataFileManagerTest.cpp.i
-
-DataFileManagerTest.s: DataFileManagerTest.cpp.s
-.PHONY : DataFileManagerTest.s
-
-# target to generate assembly for a file
-DataFileManagerTest.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/DataFileManagerTest.cpp.s
-.PHONY : DataFileManagerTest.cpp.s
-
-OutputLogTest.o: OutputLogTest.cpp.o
-.PHONY : OutputLogTest.o
-
-# target to build an object file
-OutputLogTest.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/OutputLogTest.cpp.o
-.PHONY : OutputLogTest.cpp.o
-
-OutputLogTest.i: OutputLogTest.cpp.i
-.PHONY : OutputLogTest.i
-
-# target to preprocess a source file
-OutputLogTest.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/OutputLogTest.cpp.i
-.PHONY : OutputLogTest.cpp.i
-
-OutputLogTest.s: OutputLogTest.cpp.s
-.PHONY : OutputLogTest.s
-
-# target to generate assembly for a file
-OutputLogTest.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/OutputLogTest.cpp.s
-.PHONY : OutputLogTest.cpp.s
-
-SchedulerTest.o: SchedulerTest.cpp.o
-.PHONY : SchedulerTest.o
-
-# target to build an object file
-SchedulerTest.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/SchedulerTest.cpp.o
-.PHONY : SchedulerTest.cpp.o
-
-SchedulerTest.i: SchedulerTest.cpp.i
-.PHONY : SchedulerTest.i
-
-# target to preprocess a source file
-SchedulerTest.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/SchedulerTest.cpp.i
-.PHONY : SchedulerTest.cpp.i
-
-SchedulerTest.s: SchedulerTest.cpp.s
-.PHONY : SchedulerTest.s
-
-# target to generate assembly for a file
-SchedulerTest.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/SchedulerTest.cpp.s
-.PHONY : SchedulerTest.cpp.s
-
-SerializerTest.o: SerializerTest.cpp.o
-.PHONY : SerializerTest.o
-
-# target to build an object file
-SerializerTest.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/SerializerTest.cpp.o
-.PHONY : SerializerTest.cpp.o
-
-SerializerTest.i: SerializerTest.cpp.i
-.PHONY : SerializerTest.i
-
-# target to preprocess a source file
-SerializerTest.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/SerializerTest.cpp.i
-.PHONY : SerializerTest.cpp.i
-
-SerializerTest.s: SerializerTest.cpp.s
-.PHONY : SerializerTest.s
-
-# target to generate assembly for a file
-SerializerTest.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/SerializerTest.cpp.s
-.PHONY : SerializerTest.cpp.s
-
-gtest_main.o: gtest_main.cpp.o
-.PHONY : gtest_main.o
-
-# target to build an object file
-gtest_main.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/gtest_main.cpp.o
-.PHONY : gtest_main.cpp.o
-
-gtest_main.i: gtest_main.cpp.i
-.PHONY : gtest_main.i
-
-# target to preprocess a source file
-gtest_main.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/gtest_main.cpp.i
-.PHONY : gtest_main.cpp.i
-
-gtest_main.s: gtest_main.cpp.s
-.PHONY : gtest_main.s
-
-# target to generate assembly for a file
-gtest_main.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/gtest_main.cpp.s
-.PHONY : gtest_main.cpp.s
 
 # Help Target
 help:
@@ -326,30 +161,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... Tests_run"
+	@echo "... MyProjectTests"
 	@echo "... AuditedArrayTest.o"
 	@echo "... AuditedArrayTest.i"
 	@echo "... AuditedArrayTest.s"
-	@echo "... DataFileManagerTest.o"
-	@echo "... DataFileManagerTest.i"
-	@echo "... DataFileManagerTest.s"
-	@echo "... OutputLogTest.o"
-	@echo "... OutputLogTest.i"
-	@echo "... OutputLogTest.s"
-	@echo "... SchedulerTest.o"
-	@echo "... SchedulerTest.i"
-	@echo "... SchedulerTest.s"
-	@echo "... SerializerTest.o"
-	@echo "... SerializerTest.i"
-	@echo "... SerializerTest.s"
-	@echo "... gtest_main.o"
-	@echo "... gtest_main.i"
-	@echo "... gtest_main.s"
 .PHONY : help
 
 

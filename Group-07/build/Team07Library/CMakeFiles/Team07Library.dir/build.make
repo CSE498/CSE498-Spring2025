@@ -83,81 +83,17 @@ Team07Library/CMakeFiles/Team07Library.dir/AuditedArray.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Team07Library.dir/AuditedArray.cpp.s"
 	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/AuditedArray.cpp -o CMakeFiles/Team07Library.dir/AuditedArray.cpp.s
 
-Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/flags.make
-Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.o: /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/DataFileManager.cpp
-Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.o"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.o -MF CMakeFiles/Team07Library.dir/DataFileManager.cpp.o.d -o CMakeFiles/Team07Library.dir/DataFileManager.cpp.o -c /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/DataFileManager.cpp
-
-Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Team07Library.dir/DataFileManager.cpp.i"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/DataFileManager.cpp > CMakeFiles/Team07Library.dir/DataFileManager.cpp.i
-
-Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Team07Library.dir/DataFileManager.cpp.s"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/DataFileManager.cpp -o CMakeFiles/Team07Library.dir/DataFileManager.cpp.s
-
-Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/flags.make
-Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.o: /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/OutputLog.cpp
-Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.o"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.o -MF CMakeFiles/Team07Library.dir/OutputLog.cpp.o.d -o CMakeFiles/Team07Library.dir/OutputLog.cpp.o -c /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/OutputLog.cpp
-
-Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Team07Library.dir/OutputLog.cpp.i"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/OutputLog.cpp > CMakeFiles/Team07Library.dir/OutputLog.cpp.i
-
-Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Team07Library.dir/OutputLog.cpp.s"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/OutputLog.cpp -o CMakeFiles/Team07Library.dir/OutputLog.cpp.s
-
-Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/flags.make
-Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.o: /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Scheduler.cpp
-Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.o"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.o -MF CMakeFiles/Team07Library.dir/Scheduler.cpp.o.d -o CMakeFiles/Team07Library.dir/Scheduler.cpp.o -c /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Scheduler.cpp
-
-Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Team07Library.dir/Scheduler.cpp.i"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Scheduler.cpp > CMakeFiles/Team07Library.dir/Scheduler.cpp.i
-
-Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Team07Library.dir/Scheduler.cpp.s"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Scheduler.cpp -o CMakeFiles/Team07Library.dir/Scheduler.cpp.s
-
-Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/flags.make
-Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.o: /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Serializer.cpp
-Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.o: Team07Library/CMakeFiles/Team07Library.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.o"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.o -MF CMakeFiles/Team07Library.dir/Serializer.cpp.o.d -o CMakeFiles/Team07Library.dir/Serializer.cpp.o -c /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Serializer.cpp
-
-Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Team07Library.dir/Serializer.cpp.i"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Serializer.cpp > CMakeFiles/Team07Library.dir/Serializer.cpp.i
-
-Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Team07Library.dir/Serializer.cpp.s"
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/Serializer.cpp -o CMakeFiles/Team07Library.dir/Serializer.cpp.s
-
 # Object files for target Team07Library
 Team07Library_OBJECTS = \
-"CMakeFiles/Team07Library.dir/AuditedArray.cpp.o" \
-"CMakeFiles/Team07Library.dir/DataFileManager.cpp.o" \
-"CMakeFiles/Team07Library.dir/OutputLog.cpp.o" \
-"CMakeFiles/Team07Library.dir/Scheduler.cpp.o" \
-"CMakeFiles/Team07Library.dir/Serializer.cpp.o"
+"CMakeFiles/Team07Library.dir/AuditedArray.cpp.o"
 
 # External object files for target Team07Library
 Team07Library_EXTERNAL_OBJECTS =
 
 Team07Library/libTeam07Library.a: Team07Library/CMakeFiles/Team07Library.dir/AuditedArray.cpp.o
-Team07Library/libTeam07Library.a: Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.o
-Team07Library/libTeam07Library.a: Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.o
-Team07Library/libTeam07Library.a: Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.o
-Team07Library/libTeam07Library.a: Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.o
 Team07Library/libTeam07Library.a: Team07Library/CMakeFiles/Team07Library.dir/build.make
 Team07Library/libTeam07Library.a: Team07Library/CMakeFiles/Team07Library.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libTeam07Library.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libTeam07Library.a"
 	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && $(CMAKE_COMMAND) -P CMakeFiles/Team07Library.dir/cmake_clean_target.cmake
 	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Team07Library.dir/link.txt --verbose=$(VERBOSE)
 

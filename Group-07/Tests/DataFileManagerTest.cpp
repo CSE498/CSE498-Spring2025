@@ -1,3 +1,6 @@
+#include "../Team07Library/DataFileManager.h"
+#include "gtest/gtest.h"
+
 // New test case to create a CSV file
 TEST(DataFileManagerTest, CreateCSVFile) {
   // Define CSV data

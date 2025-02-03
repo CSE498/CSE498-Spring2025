@@ -85,51 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles /home/ap/Downloads/CSE498-Spring2025/Group-07/build/Team07Library//CMakeFiles/progress.marks
@@ -199,102 +154,6 @@ AuditedArray.cpp.s:
 	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/AuditedArray.cpp.s
 .PHONY : AuditedArray.cpp.s
 
-DataFileManager.o: DataFileManager.cpp.o
-.PHONY : DataFileManager.o
-
-# target to build an object file
-DataFileManager.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.o
-.PHONY : DataFileManager.cpp.o
-
-DataFileManager.i: DataFileManager.cpp.i
-.PHONY : DataFileManager.i
-
-# target to preprocess a source file
-DataFileManager.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.i
-.PHONY : DataFileManager.cpp.i
-
-DataFileManager.s: DataFileManager.cpp.s
-.PHONY : DataFileManager.s
-
-# target to generate assembly for a file
-DataFileManager.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/DataFileManager.cpp.s
-.PHONY : DataFileManager.cpp.s
-
-OutputLog.o: OutputLog.cpp.o
-.PHONY : OutputLog.o
-
-# target to build an object file
-OutputLog.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.o
-.PHONY : OutputLog.cpp.o
-
-OutputLog.i: OutputLog.cpp.i
-.PHONY : OutputLog.i
-
-# target to preprocess a source file
-OutputLog.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.i
-.PHONY : OutputLog.cpp.i
-
-OutputLog.s: OutputLog.cpp.s
-.PHONY : OutputLog.s
-
-# target to generate assembly for a file
-OutputLog.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/OutputLog.cpp.s
-.PHONY : OutputLog.cpp.s
-
-Scheduler.o: Scheduler.cpp.o
-.PHONY : Scheduler.o
-
-# target to build an object file
-Scheduler.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.o
-.PHONY : Scheduler.cpp.o
-
-Scheduler.i: Scheduler.cpp.i
-.PHONY : Scheduler.i
-
-# target to preprocess a source file
-Scheduler.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.i
-.PHONY : Scheduler.cpp.i
-
-Scheduler.s: Scheduler.cpp.s
-.PHONY : Scheduler.s
-
-# target to generate assembly for a file
-Scheduler.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/Scheduler.cpp.s
-.PHONY : Scheduler.cpp.s
-
-Serializer.o: Serializer.cpp.o
-.PHONY : Serializer.o
-
-# target to build an object file
-Serializer.cpp.o:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.o
-.PHONY : Serializer.cpp.o
-
-Serializer.i: Serializer.cpp.i
-.PHONY : Serializer.i
-
-# target to preprocess a source file
-Serializer.cpp.i:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.i
-.PHONY : Serializer.cpp.i
-
-Serializer.s: Serializer.cpp.s
-.PHONY : Serializer.s
-
-# target to generate assembly for a file
-Serializer.cpp.s:
-	cd /home/ap/Downloads/CSE498-Spring2025/Group-07/build && $(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/Serializer.cpp.s
-.PHONY : Serializer.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -302,27 +161,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... Team07Library"
 	@echo "... AuditedArray.o"
 	@echo "... AuditedArray.i"
 	@echo "... AuditedArray.s"
-	@echo "... DataFileManager.o"
-	@echo "... DataFileManager.i"
-	@echo "... DataFileManager.s"
-	@echo "... OutputLog.o"
-	@echo "... OutputLog.i"
-	@echo "... OutputLog.s"
-	@echo "... Scheduler.o"
-	@echo "... Scheduler.i"
-	@echo "... Scheduler.s"
-	@echo "... Serializer.o"
-	@echo "... Serializer.i"
-	@echo "... Serializer.s"
 .PHONY : help
 
 

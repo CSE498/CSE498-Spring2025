@@ -1,17 +1,20 @@
-#Used Professor Owen's CMake files for CSE 335 for our project
+cmake_minimum_required(VERSION 3.20)
 project(Team07Library)
 
-set(SOURCE_FILES
-        AuditedArray.cpp
-        AuditedArray.hpp
-        DataFileManager.cpp
-        DataFileManager.h
-        OutputLog.cpp
-        OutputLog.hpp
-        Scheduler.cpp
-        Scheduler.hpp
-        Serializer.cpp
-        Serializer.hpp
+# Include directories
+include_directories(${CMAKE_SOURCE_DIR}/Team07Library)
+
+# Define source and header files
+set(LIBRARY_SOURCES
+    ${CMAKE_SOURCE_DIR}/Team07Library/AuditedArray.cpp
+    # Add other source files here
 )
 
-add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+set(LIBRARY_HEADERS
+    ${CMAKE_SOURCE_DIR}/Team07Library/AuditedArray.h
+    # Add other header files here
+)
+
+# Create the library
+add_library(${PROJECT_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
+

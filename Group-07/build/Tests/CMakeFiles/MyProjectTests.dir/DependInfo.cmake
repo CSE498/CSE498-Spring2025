@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ap/Downloads/CSE498-Spring2025/Group-07/Team07Library/AuditedArray.cpp" "Team07Library/CMakeFiles/Team07Library.dir/AuditedArray.cpp.o" "gcc" "Team07Library/CMakeFiles/Team07Library.dir/AuditedArray.cpp.o.d"
+  "/home/ap/Downloads/CSE498-Spring2025/Group-07/Tests/AuditedArrayTest.cpp" "Tests/CMakeFiles/MyProjectTests.dir/AuditedArrayTest.cpp.o" "gcc" "Tests/CMakeFiles/MyProjectTests.dir/AuditedArrayTest.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

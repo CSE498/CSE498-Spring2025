@@ -98,69 +98,16 @@ Team07Library/clean: Team07Library/CMakeFiles/Team07Library.dir/clean
 # Directory level rules for directory Tests
 
 # Recursive "all" directory target.
-Tests/all: Tests/CMakeFiles/Tests_run.dir/all
-Tests/all: _deps/googletest-build/all
+Tests/all: Tests/CMakeFiles/MyProjectTests.dir/all
 .PHONY : Tests/all
 
 # Recursive "preinstall" directory target.
-Tests/preinstall: _deps/googletest-build/preinstall
+Tests/preinstall:
 .PHONY : Tests/preinstall
 
 # Recursive "clean" directory target.
-Tests/clean: Tests/CMakeFiles/Tests_run.dir/clean
-Tests/clean: _deps/googletest-build/clean
+Tests/clean: Tests/CMakeFiles/MyProjectTests.dir/clean
 .PHONY : Tests/clean
-
-#=============================================================================
-# Directory level rules for directory _deps/googletest-build
-
-# Recursive "all" directory target.
-_deps/googletest-build/all: _deps/googletest-build/googlemock/all
-.PHONY : _deps/googletest-build/all
-
-# Recursive "preinstall" directory target.
-_deps/googletest-build/preinstall: _deps/googletest-build/googlemock/preinstall
-.PHONY : _deps/googletest-build/preinstall
-
-# Recursive "clean" directory target.
-_deps/googletest-build/clean: _deps/googletest-build/googlemock/clean
-.PHONY : _deps/googletest-build/clean
-
-#=============================================================================
-# Directory level rules for directory _deps/googletest-build/googlemock
-
-# Recursive "all" directory target.
-_deps/googletest-build/googlemock/all: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
-_deps/googletest-build/googlemock/all: _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
-_deps/googletest-build/googlemock/all: _deps/googletest-build/googletest/all
-.PHONY : _deps/googletest-build/googlemock/all
-
-# Recursive "preinstall" directory target.
-_deps/googletest-build/googlemock/preinstall: _deps/googletest-build/googletest/preinstall
-.PHONY : _deps/googletest-build/googlemock/preinstall
-
-# Recursive "clean" directory target.
-_deps/googletest-build/googlemock/clean: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean
-_deps/googletest-build/googlemock/clean: _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean
-_deps/googletest-build/googlemock/clean: _deps/googletest-build/googletest/clean
-.PHONY : _deps/googletest-build/googlemock/clean
-
-#=============================================================================
-# Directory level rules for directory _deps/googletest-build/googletest
-
-# Recursive "all" directory target.
-_deps/googletest-build/googletest/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-_deps/googletest-build/googletest/all: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
-.PHONY : _deps/googletest-build/googletest/all
-
-# Recursive "preinstall" directory target.
-_deps/googletest-build/googletest/preinstall:
-.PHONY : _deps/googletest-build/googletest/preinstall
-
-# Recursive "clean" directory target.
-_deps/googletest-build/googletest/clean: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean
-_deps/googletest-build/googletest/clean: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean
-.PHONY : _deps/googletest-build/googletest/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Group-07.dir
@@ -174,7 +121,7 @@ CMakeFiles/Group-07.dir/all: Team07Library/CMakeFiles/Team07Library.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Group-07.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Group-07.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 0
 .PHONY : CMakeFiles/Group-07.dir/rule
@@ -195,12 +142,12 @@ CMakeFiles/Group-07.dir/clean:
 Team07Library/CMakeFiles/Team07Library.dir/all:
 	$(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/depend
 	$(MAKE) $(MAKESILENT) -f Team07Library/CMakeFiles/Team07Library.dir/build.make Team07Library/CMakeFiles/Team07Library.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=3,4,5,6,7,8 "Built target Team07Library"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=5,6 "Built target Team07Library"
 .PHONY : Team07Library/CMakeFiles/Team07Library.dir/all
 
 # Build rule for subdir invocation for target.
 Team07Library/CMakeFiles/Team07Library.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Team07Library/CMakeFiles/Team07Library.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 0
 .PHONY : Team07Library/CMakeFiles/Team07Library.dir/rule
@@ -215,136 +162,30 @@ Team07Library/CMakeFiles/Team07Library.dir/clean:
 .PHONY : Team07Library/CMakeFiles/Team07Library.dir/clean
 
 #=============================================================================
-# Target rules for target Tests/CMakeFiles/Tests_run.dir
+# Target rules for target Tests/CMakeFiles/MyProjectTests.dir
 
 # All Build rule for target.
-Tests/CMakeFiles/Tests_run.dir/all: Team07Library/CMakeFiles/Team07Library.dir/all
-Tests/CMakeFiles/Tests_run.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/depend
-	$(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=9,10,11,12,13,14,15 "Built target Tests_run"
-.PHONY : Tests/CMakeFiles/Tests_run.dir/all
+Tests/CMakeFiles/MyProjectTests.dir/all: Team07Library/CMakeFiles/Team07Library.dir/all
+	$(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/MyProjectTests.dir/build.make Tests/CMakeFiles/MyProjectTests.dir/depend
+	$(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/MyProjectTests.dir/build.make Tests/CMakeFiles/MyProjectTests.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=3,4 "Built target MyProjectTests"
+.PHONY : Tests/CMakeFiles/MyProjectTests.dir/all
 
 # Build rule for subdir invocation for target.
-Tests/CMakeFiles/Tests_run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 15
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Tests/CMakeFiles/Tests_run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 0
-.PHONY : Tests/CMakeFiles/Tests_run.dir/rule
-
-# Convenience name for target.
-Tests_run: Tests/CMakeFiles/Tests_run.dir/rule
-.PHONY : Tests_run
-
-# clean rule for target.
-Tests/CMakeFiles/Tests_run.dir/clean:
-	$(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/Tests_run.dir/build.make Tests/CMakeFiles/Tests_run.dir/clean
-.PHONY : Tests/CMakeFiles/Tests_run.dir/clean
-
-#=============================================================================
-# Target rules for target _deps/googletest-build/googlemock/CMakeFiles/gmock.dir
-
-# All Build rule for target.
-_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/depend
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=16,17 "Built target gmock"
-.PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
-
-# Build rule for subdir invocation for target.
-_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
+Tests/CMakeFiles/MyProjectTests.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Tests/CMakeFiles/MyProjectTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 0
-.PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule
+.PHONY : Tests/CMakeFiles/MyProjectTests.dir/rule
 
 # Convenience name for target.
-gmock: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/rule
-.PHONY : gmock
+MyProjectTests: Tests/CMakeFiles/MyProjectTests.dir/rule
+.PHONY : MyProjectTests
 
 # clean rule for target.
-_deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean
-.PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/clean
-
-#=============================================================================
-# Target rules for target _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir
-
-# All Build rule for target.
-_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/all
-_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/depend
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=18,19 "Built target gmock_main"
-.PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
-
-# Build rule for subdir invocation for target.
-_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 0
-.PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule
-
-# Convenience name for target.
-gmock_main: _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/rule
-.PHONY : gmock_main
-
-# clean rule for target.
-_deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/build.make _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean
-.PHONY : _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/clean
-
-#=============================================================================
-# Target rules for target _deps/googletest-build/googletest/CMakeFiles/gtest.dir
-
-# All Build rule for target.
-_deps/googletest-build/googletest/CMakeFiles/gtest.dir/all:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/depend
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=20,21 "Built target gtest"
-.PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-
-# Build rule for subdir invocation for target.
-_deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 0
-.PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
-
-# Convenience name for target.
-gtest: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/rule
-.PHONY : gtest
-
-# clean rule for target.
-_deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean
-.PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest.dir/clean
-
-#=============================================================================
-# Target rules for target _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir
-
-# All Build rule for target.
-_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all: _deps/googletest-build/googletest/CMakeFiles/gtest.dir/all
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/depend
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles --progress-num=22,23 "Built target gtest_main"
-.PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
-
-# Build rule for subdir invocation for target.
-_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 4
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ap/Downloads/CSE498-Spring2025/Group-07/build/CMakeFiles 0
-.PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
-
-# Convenience name for target.
-gtest_main: _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/rule
-.PHONY : gtest_main
-
-# clean rule for target.
-_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean:
-	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean
-.PHONY : _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/clean
+Tests/CMakeFiles/MyProjectTests.dir/clean:
+	$(MAKE) $(MAKESILENT) -f Tests/CMakeFiles/MyProjectTests.dir/build.make Tests/CMakeFiles/MyProjectTests.dir/clean
+.PHONY : Tests/CMakeFiles/MyProjectTests.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

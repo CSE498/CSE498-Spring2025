@@ -1,2 +1,2 @@
-/usr/bin/ar qc libTeam07Library.a CMakeFiles/Team07Library.dir/AuditedArray.cpp.o CMakeFiles/Team07Library.dir/DataFileManager.cpp.o CMakeFiles/Team07Library.dir/OutputLog.cpp.o CMakeFiles/Team07Library.dir/Scheduler.cpp.o CMakeFiles/Team07Library.dir/Serializer.cpp.o
+/usr/bin/ar qc libTeam07Library.a CMakeFiles/Team07Library.dir/AuditedArray.cpp.o
 /usr/bin/ranlib libTeam07Library.a
