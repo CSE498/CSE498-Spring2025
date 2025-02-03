@@ -7,13 +7,11 @@ class DataFileManager {
 public:
     DataFileManager(const std::string& path); // Constructor
     void update();
-    void addFunction();
     void openFile();
     void closeFile();
-    void clearFunctions();
-    void listFunctions();
 private:
     std::string filePath;
+    // std::vector<>
 };
 
 #endif // DATAFILEMANAGER_H

@@ -4,24 +4,21 @@
 // Load in path to file as a string
 DataFileManager::DataFileManager(const std::string& path) : filePath(path) {}
 
+// Updates the file based on provided functions and builds new rows
 void DataFileManager::update() {
 }
 
-void DataFileManager::addFunction() {
-}
-
 void DataFileManager::openFile() {
-	std::ifstream file(filePath); // Read file
-	if (!file.is_open()){ // Error check
-		throw std::runtime_error("Filepath doesn't exist");
-	}
+	// Handles CSV Case, https://en.cppreference.com/w/cpp/string/basic_string/find_last_of
+	if (filePath.substr(filePath.find_last_of(".") + 1) == "csv") {
+        	std::cout << "File has .csv extension." << std::endl;
+    	}
+	// Handles Error
+	else {
+        	std::cout << "File does not have valid extension." << std::endl;
+    	}
 }
 
 void DataFileManager::closeFile() {
 }
 
-void DataFileManager::clearFunctions() {
-}
-
-void DataFileManager::listFunctions() {
-}
