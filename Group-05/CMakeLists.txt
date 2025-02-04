@@ -3,4 +3,4 @@ project(hamilton)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(hamilton main.cpp src/DataGrid.h src/DataGrid.cpp src/Datum.h src/Datum.cpp)
+add_executable(hamilton main.cpp src/DataGrid.h src/DataGrid.cpp src/Datum.h src/Datum.cpp src/CSVfile.h src/CSVfile.cpp)
