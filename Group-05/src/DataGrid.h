@@ -58,7 +58,13 @@ class DataGrid {
     return mGrid.at(rowIndex);
   }
 
-   const std::vector<Datum> &GetRow(const std::size_t rowIndex) const {
+  /**
+ * @brief Index a row of the DataGrid in a read-only manner.
+ * @param row_index Index of the row
+ * @return A const reference to the indexed vector row from the DataGrid.
+ */
+
+  const std::vector<Datum> &GetRow(const std::size_t rowIndex) const {
     return mGrid.at(rowIndex);
   }
 
