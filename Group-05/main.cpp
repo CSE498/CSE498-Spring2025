@@ -76,13 +76,13 @@ int main() {
   cse::DataGrid grid;
 
   std::cout << "\n[1] Insert Rows\n";
-  grid.insertRow(0);
-  grid.insertRow(1);
+  grid.InsertRow(0);
+  grid.InsertRow(1);
   std::cout << grid;
 
   std::cout << "\n[2] Insert Columns\n";
-  grid.insertColumn(0);
-  grid.insertColumn(1);
+  grid.InsertColumn(0);
+  grid.InsertColumn(1);
   std::cout << grid;
 
   std::cout << "\n[3] Modify Values (String and Double)\n";
@@ -122,11 +122,11 @@ int main() {
   std::cout << "\n";
 
   std::cout << "\n[7] Delete Row 0\n";
-  grid.deleteRow(0);
+  grid.DeleteRow(0);
   std::cout << grid;
 
   std::cout << "\n[8] Delete Column 0\n";
-  grid.deleteColumn(0);
+  grid.DeleteColumn(0);
   std::cout << grid;
 
   return 0;

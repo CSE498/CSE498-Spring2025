@@ -1,9 +1,8 @@
 /**
  * @file DataGrid.h
- *
  * @author Shahaab Ali
  *
- * A 2D data table providing a simple and efficient tabular interface.
+ * @brief A 2D data table providing a simple and efficient tabular interface.
  */
 
 #pragma once
@@ -16,39 +15,44 @@
 namespace cse {
 
 /**
- * A 2D data table providing a simple and efficient tabular interface.
+ * @class DataGrid
+ * @brief A 2D data table providing a simple and efficient tabular interface.
  */
 class DataGrid {
-private:
+ private:
   /// A 2D vector holding datums
   std::vector<std::vector<Datum>> mGrid;
 
-public:
+ public:
   /**
-   * Default Constructor
+   * @brief Default Constructor
    */
-  DataGrid() {}
+  DataGrid() = default;
 
   /**
-   * Default Destructor
+   * @brief Default Destructor
    */
-  ~DataGrid() {}
+  ~DataGrid() = default;
 
+  /**
+   * @brief Returns the shape of the DataGrid
+   * @return Tuple of (# of rows, # of columns)
+   */
   std::tuple<const std::size_t, const std::size_t> Shape() const;
 
   /**
-   * Index a row of the DataGrid
-   * @param rowIndex
-   * @return indexed vector row from DataGrid
+   * @brief Index a row of the DataGrid
+   * @param row_index Index of the row
+   * @return Indexed vector row from DataGrid
    */
-  std::vector<Datum> &operator[](const std::size_t rowIndex) {
-    return mGrid.at(rowIndex);
+  std::vector<Datum>& operator[](const std::size_t row_index) {
+    return mGrid.at(row_index);
   }
 
   /**
-   * Index a row of the DataGrid
-   * @param rowIndex
-   * @return indexed vector row from DataGrid
+   * @brief Index a row of the DataGrid
+   * @param row_index Index of the row
+   * @return Indexed vector row from DataGrid
    */
   std::vector<Datum> &GetRow(const std::size_t rowIndex) {
     return mGrid.at(rowIndex);
@@ -58,31 +62,54 @@ public:
     return mGrid.at(rowIndex);
   }
 
-  std::vector<Datum> GetColumn(std::size_t columnIndex) const;
+  /**
+   * @brief Index a column of the DataGrid
+   * @param column_index Index of the column
+   * @return Indexed vector column from DataGrid
+   */
+  std::vector<Datum> GetColumn(std::size_t column_index) const;
 
   /**
-   * Get Datum value from DataGrid
-   * @param rowIndex
-   * @param columnIndex
-   * @return the Datum at the given index
+   * @brief Get Datum value from DataGrid
+   * @param row_index Index of the row
+   * @param column_index Index of the column
+   * @return The Datum at the given index
    */
-  Datum &GetValue(const std::size_t rowIndex, const std::size_t columnIndex) {
-    return mGrid.at(rowIndex).at(columnIndex);
+  Datum& GetValue(const std::size_t row_index, const std::size_t column_index) {
+    return mGrid.at(row_index).at(column_index);
   }
 
-  const Datum &GetValue(std::size_t rowIndex, std::size_t columnIndex) const {
-    return mGrid.at(rowIndex).at(columnIndex);
+  /**
+   * @brief Get const Datum value from DataGrid (used for stream output printing)
+   * @param row_index Index of the row
+   * @param column_index Index of the column
+   * @return The Datum at the given index
+   */
+  const Datum& GetValue(std::size_t row_index, std::size_t column_index) const {
+    return mGrid.at(row_index).at(column_index);
   }
 
-  void insertRow(std::size_t rowIndex);
-  void insertColumn(std::size_t columnIndex);
-  void deleteRow(std::size_t rowIndex);
-  void deleteColumn(std::size_t columnIndex);
-  std::ostream &Print(std::ostream &os) const;
+  void InsertRow(std::size_t row_index);
+  void InsertColumn(std::size_t column_index);
+  void DeleteRow(std::size_t row_index);
+  void DeleteColumn(std::size_t column_index);
+
+  /**
+   * @brief Outputs DataGrid values to output stream for visualization
+   * @param os Output stream
+   * @return Output stream with formatted DataGrid values
+   */
+  std::ostream& Print(std::ostream& os) const;
 };
 
-inline std::ostream &operator<<(std::ostream &os, const DataGrid &grid) {
+/**
+ * @brief Overloaded stream insertion operator for DataGrid
+ * @param os Output stream
+ * @param grid DataGrid to be printed
+ * @return Output stream with DataGrid content
+ */
+inline std::ostream& operator<<(std::ostream& os, const DataGrid& grid) {
   return grid.Print(os);
 }
 
-} // namespace cse
+}  // namespace cse
