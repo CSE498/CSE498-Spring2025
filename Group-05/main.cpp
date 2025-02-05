@@ -1,5 +1,6 @@
 #include "src/DataGrid.h"
 #include "src/Datum.h"
+#include "src/CSVfile.h"
 #include <iostream>
 #include <typeinfo>
 

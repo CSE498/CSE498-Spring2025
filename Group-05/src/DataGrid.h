@@ -54,6 +54,10 @@ public:
     return mGrid.at(rowIndex);
   }
 
+   const std::vector<Datum> &GetRow(const std::size_t rowIndex) const {
+    return mGrid.at(rowIndex);
+  }
+
   std::vector<Datum> GetColumn(std::size_t columnIndex) const;
 
   /**
