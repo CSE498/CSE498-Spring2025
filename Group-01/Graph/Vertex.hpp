@@ -24,6 +24,7 @@ namespace cse {
     bool IsConnected(std::shared_ptr<cse::Vertex> const &destination);
 
     std::string GetId() const { return id; };
+    const std::map<std::string, std::weak_ptr<Edge>>& GetEdges() const { return edges; };
     double GetX() const { return x; };
     double GetY() const { return y; };
 
