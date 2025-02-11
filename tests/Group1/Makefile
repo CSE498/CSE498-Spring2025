@@ -1,5 +1,5 @@
 # List of folders containing test files
-TEST_FOLDERS = Graph
+TEST_FOLDERS = Graph Random
 
 BUILD_CPP_FILES = ../../Group-01/Graph/Vertex.cpp ../../Group-01/Graph/Graph.cpp
 
