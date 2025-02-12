@@ -36,7 +36,7 @@ extern "C" {
 int main() {
     EM_ASM({
         InjectImage = Module.cwrap('InjectImage', null, ['string', 'number', 'number', 'string']);
-        InjectImage("https://cse498.github.io/assets/img/logo.png", 400, 300, "JavaScript Logo");
+        InjectImage("https://i.pinimg.com/originals/36/82/13/368213faa3efdfeffa5da9f5b493c9e7.jpg", 700, 500, "Sparty!");
     });
 
     return 0;

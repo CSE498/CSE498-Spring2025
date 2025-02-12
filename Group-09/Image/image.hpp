@@ -14,36 +14,36 @@ namespace cse {
  * @brief A struct to represent an image
  */
 class Image {
-private:
-    std::string url;
-    int width;
-    int height;
-    std::string altText;
+ public:
+  Image(const std::string& url, int width, int height, const std::string& altText = "");
 
-    // bool validateURL(const std::string& url) const; 
+  /** @return The url of the image */
+  std::string getURL() const { return url; }
+  /** @return The width of the image */
+  int getWidth() const { return width; }
+  /** @return The height of the image */
+  int getHeight() const { return height; }
+  /** @return The alternative text of the image */
+  std::string getAltText() const { return altText; }
 
-public:
-    Image(const std::string& url, int width, int height, const std::string& altText = "");
+  void setURL(const std::string& newURL);
+  void resize(int newWidth, int newHeight, bool maintainAspect = true);
+  void updateAltText(const std::string& newAltText);
 
-    /** @return The url of the image */
-    std::string getURL() const { return url; }
-    /** @return The width of the image */
-    int getWidth() const { return width; }
-    /** @return The height of the image */
-    int getHeight() const { return height; }
-    /** @return The alternative text of the image */
-    std::string getAltText() const { return altText; }
+  std::string renderHTML() const;
+  std::string generateJS() const;
 
-    void setURL(const std::string& newURL);
-    void resize(int newWidth, int newHeight, bool maintainAspect = true);
-    void updateAltText(const std::string& newAltText);
+  void injectJS() const;
 
-    std::string renderHTML() const;
-    std::string generateJS() const;
+  void preview() const;
 
-    void injectJS() const;
+ private:
+  std::string url;
+  int width;
+  int height;
+  std::string altText;
+    // bool validateURL(const std::string& url) const;
 
-    void preview() const;
 };
 
 }

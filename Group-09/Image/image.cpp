@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <sstream>
+#include <assert.h>
 #include <emscripten.h>
 
 namespace cse {
@@ -18,7 +19,7 @@ namespace cse {
  * @return True if the URL is valid
  */
 bool validateURL(const std::string& url) {
-    return url.find("http://") == 0 || url.find("https://") == 0;
+  return url.find("http://") == 0 || url.find("https://") == 0;
 }
 
 /**
@@ -32,12 +33,17 @@ bool validateURL(const std::string& url) {
  */
 Image::Image(const std::string& url, int width, int height, const std::string& altText)
     : url(url), width(width), height(height), altText(altText) {
-    if (!validateURL(url)) {
-        throw std::invalid_argument("Invalid URL: Must start with http:// or https://");
-    }
-    if (width <= 0 || height <= 0) {
-        throw std::invalid_argument("Invalid dimensions: Width and height must be positive integers");
-    }
+  assert(!url.empty() && "URL must not be empty");
+  assert(width > 0 && height > 0 && "Width and height must be positive integers");
+  width = -100;
+  assert(width >0);
+
+  if (!validateURL(url)) {
+    throw std::invalid_argument("Invalid URL: Must start with http:// or https://");
+  }
+  if (width <= 0 || height <= 0) {
+    throw std::invalid_argument("Invalid dimensions: Width and height must be positive integers");
+  }
 }
 
 /**
@@ -47,10 +53,11 @@ Image::Image(const std::string& url, int width, int height, const std::string& a
  * @throws std::invalid_argument If the URL is invalid
  */
 void Image::setURL(const std::string& newURL) {
-    if (!validateURL(newURL)) {
-        throw std::invalid_argument("Invalid URL: Must start with http:// or https://");
-    }
-    url = newURL;
+  assert(!newURL.empty() && "New URL must not be empty");
+  if (!validateURL(newURL)) {
+    throw std::invalid_argument("Invalid URL: Must start with http:// or https://");
+  }
+  url = newURL;
 }
 
 /**
@@ -62,21 +69,22 @@ void Image::setURL(const std::string& newURL) {
  * @throws std::invalid_argument If new dimensions aren' t positive
  */
 void Image::resize(int newWidth, int newHeight, bool maintainAspect) {
-    if (newWidth <= 0 || newHeight <= 0) {
-        throw std::invalid_argument("Invalid dimensions: Width and height must be positive.");
-    }
 
-    if (maintainAspect) {
-        double aspectRatio = static_cast<double>(width) / height;
-        if (newWidth / aspectRatio > newHeight) {
-            newWidth = static_cast<int>(newHeight * aspectRatio);
-        } else {
-            newHeight = static_cast<int>(newWidth / aspectRatio);
-        }
-    }
+  assert(newWidth > 0 && newHeight > 0 && "Must be positive integers");
+  if (newWidth <= 0 || newHeight <= 0) {
+    throw std::invalid_argument("Invalid dimensions: Width and height must be positive.");
+  }
 
-    width = newWidth;
-    height = newHeight;
+  if (maintainAspect) {
+    double aspectRatio = static_cast<double>(width) / height;
+    if (newWidth / aspectRatio > newHeight) {
+      newWidth = static_cast<int>(newHeight * aspectRatio);
+      } else {
+        newHeight = static_cast<int>(newWidth / aspectRatio);
+      }
+  }
+  width = newWidth;
+  height = newHeight;
 }
 
 /**
@@ -85,42 +93,43 @@ void Image::resize(int newWidth, int newHeight, bool maintainAspect) {
  * @param newAltText The new text
  */
 void Image::updateAltText(const std::string& newAltText) {
-    altText = newAltText;
+  altText = newAltText;
 }
 
 /** @return A string containing the HTML representation of the image */
 std::string Image::renderHTML() const {
-    std::ostringstream html;
-    html << "<img src=\"" << url << "\" width=\"" << width << "\" height=\"" << height
-         << "\" alt=\"" << altText << "\">";
-    return html.str();
+  std::ostringstream html;
+  html << "<img src=\"" << url << "\" width=\"" << width << "\" height=\"" << height
+       << "\" alt=\"" << altText << "\">";
+  return html.str();
 }
 
 /** @return A string containing JavaScript code to dynamically insert image into webpage */
 std::string Image::generateJS() const {
-    std::ostringstream js;
-    js << "var img = document.createElement('img');\n"
-       << "img.src = '" << url << "';\n"
-       << "img.width = " << width << ";\n"
-       << "img.height = " << height << ";\n"
-       << "img.alt = '" << altText << "';\n"
-       << "document.body.appendChild(img);";
-    return js.str();
+
+  std::ostringstream js;
+  js << "var img = document.createElement('img');\n"
+     << "img.src = '" << url << "';\n"
+     << "img.width = " << width << ";\n"
+     << "img.height = " << height << ";\n"
+     << "img.alt = '" << altText << "';\n"
+     << "document.body.appendChild(img);";
+  return js.str();
 }
 
 /**
  * @brief Preview of the image details for debugging
  */
 void Image::preview() const {
-    std::ostringstream output;
-    output << "Image Preview:\n"
-           << "URL: " << url << "\n"
-           << "Dimensions: " << width << "x" << height << "\n"
-           << "Alt Text: " << altText << "\n"
-           << "HTML: " << renderHTML() << "\n"
-           << "JavaScript: " << generateJS() << "\n";
+  std::ostringstream output;
+  output << "Image Preview:\n"
+         << "URL: " << url << "\n"
+         << "Dimensions: " << width << "x" << height << "\n"
+         << "Alt Text: " << altText << "\n"
+         << "HTML: " << renderHTML() << "\n"
+         << "JavaScript: " << generateJS() << "\n";
 
-    emscripten_log(EM_LOG_CONSOLE, "%s", output.str().c_str());
+  emscripten_log(EM_LOG_CONSOLE, "%s", output.str().c_str());
 }
 
 
