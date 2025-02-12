@@ -5,8 +5,6 @@
  *
  */
 
-#pragma once
-
 #include "FormattedText.hpp"
 
 #include <algorithm>
@@ -19,26 +17,25 @@ namespace cse {
  * @return std::string
  */
 std::string FormattedText::getEscapedText() const {
-  if (type != TextType::Raw) return text;  // For non-raw text, return as-is.
+  assert(!text.empty() && "Attempting to escape an empty text");
 
-  std::string escaped = text;
-  // Replace '&' first to avoid double-escaping.
-  size_t pos = 0;
-  while ((pos = escaped.find("&", pos)) != std::string::npos) {
-    escaped.replace(pos, 1, "&amp;");
-    pos += 5;  // length of "&amp;"
+  std::ostringstream escaped;
+  for (char c : text) {
+    switch (c) {
+      case '&':
+        escaped << "&amp;";
+        break;
+      case '<':
+        escaped << "&lt;";
+        break;
+      case '>':
+        escaped << "&gt;";
+        break;
+      default:
+        escaped << c;
+    }
   }
-  pos = 0;
-  while ((pos = escaped.find("<", pos)) != std::string::npos) {
-    escaped.replace(pos, 1, "&lt;");
-    pos += 4;  // length of "&lt;"
-  }
-  pos = 0;
-  while ((pos = escaped.find(">", pos)) != std::string::npos) {
-    escaped.replace(pos, 1, "&gt;");
-    pos += 4;  // length of "&gt;"
-  }
-  return escaped;
+  return escaped.str();
 }
 
 /**
@@ -47,9 +44,7 @@ std::string FormattedText::getEscapedText() const {
  * @return std::string
  */
 std::string FormattedText::getFormattedOutput() const {
-  if (type == TextType::HTML)
-    return text;  // Return HTML unchanged so it renders correctly in a browser.
-  else
-    return getEscapedText();  // For raw text, return the escaped version.
+  // If the text is HTML, return it as-is. Otherwise, escape special characters.
+  return (type == TextType::HTML) ? text : getEscapedText();
 }
 }  // namespace cse

@@ -8,7 +8,10 @@
 #define TEXTBOX_H
 
 #include <algorithm>
+#include <cassert>
 #include <string>
+
+#include "FormattedText.hpp"
 
 namespace cse {
 /**
@@ -16,9 +19,9 @@ namespace cse {
  *
  */
 struct TextBoxConfig {
-  std::string text;  // Initial text
-  int width;         // Initial width
-  int height;        // Initial height
+  FormattedText content;
+  int width;
+  int height;
 };
 
 /**
@@ -30,75 +33,148 @@ struct TextBoxConfig {
 class TextBox {
  public:
   /**
-   * @brief Construct a new Text Box object
+   * @brief Construct a new Text Box object.
    *
    */
-  TextBox() : text(""), width(0), height(0) {}
+  TextBox() = default;
 
   /**
-   * @brief Construct a new Text Box object
+   * @brief Construct a new TextBox.
+   *
+   * @param boxID If empty, an ID is auto-generated.
    * @param config The configuration for the TextBox.
-   *
    */
-  TextBox(const TextBoxConfig& config)
-      : text(config.text), width(config.width), height(config.height) {}
+  TextBox(std::string boxID, const TextBoxConfig& config)
+      : id(boxID.empty() ? generateID() : boxID),
+        content(config.content),
+        width(config.width),
+        height(config.height) {}
 
   /**
-   * @brief Get the Text object
+   * @brief Copy constructor.
+   */
+  TextBox(const TextBox& other)
+      : id(other.id),
+        content(other.content),
+        width(other.width),
+        height(other.height) {}
+
+  /**
+   * @brief Move constructor.
+   */
+  TextBox(TextBox&& other) noexcept
+      : id(std::move(other.id)),
+        content(std::move(other.content)),
+        width(other.width),
+        height(other.height) {}
+
+  /**
+   * @brief Copy assignment operator.
+   */
+  TextBox& operator=(const TextBox& other) {
+    if (this != &other) {
+      id = other.id;
+      content = other.content;
+      width = other.width;
+      height = other.height;
+    }
+    return *this;
+  }
+
+  /**
+   * @brief Move assignment operator.
+   */
+  TextBox& operator=(TextBox&& other) noexcept {
+    if (this != &other) {
+      id = std::move(other.id);
+      content = std::move(other.content);
+      width = other.width;
+      height = other.height;
+    }
+    return *this;
+  }
+
+  /**
+   * @brief Get the FormattedText object.
+   *
+   * @return const FormattedText&
+   */
+  const FormattedText& getFormattedText() const { return content; }
+
+  /**
+   * @brief Set the FormattedText object.
+   *
+   * @param newFormattedText
+   */
+  void setFormattedText(const FormattedText& newFormattedText) {
+    content.updateFrom(newFormattedText);
+  }
+
+  /**
+   * @brief Get the ID object.
    *
    * @return std::string
    */
-  std::string getText() const { return text; }
+  std::string getID() const {
+    assert(!id.empty() && "TextBox ID should never be empty!");
+    return id;
+  }
 
   /**
-   * @brief Set the Text object
-   *
-   * @param newText
-   */
-  void setText(const std::string& newText) { text = newText; }
-
-  /**
-   * @brief Get the Width object
+   * @brief Get the Width object.
    *
    * @return int
    */
   int getWidth() const { return width; }
 
   /**
-   * @brief Get the Height object
+   * @brief Get the Height object.
    *
    * @return int
    */
   int getHeight() const { return height; }
 
   /**
-   * @brief Resize the Text Box
+   * @brief Resize the Text Box.
    *
    * @param newWidth
    * @param newHeight
    */
   void resize(int newWidth, int newHeight) {
+    // Clamp to zero for negative inputs.
     width = std::max(0, newWidth);
     height = std::max(0, newHeight);
   }
 
   /**
-   * @brief Clear the Text Box
+   * @brief Clear the Text Box by calling clearText on the FormattedText object.
    *
    */
-  void clearText() { text.clear(); }
+  void clearText() { content.clearText(); }
 
   /**
-   * @brief Append text to the Text Box
+   * @brief Append text to the Text Box by calling appendText on the
+   * FormattedText object.
    *
    * @param additionalText
    */
-  void appendText(const std::string& additionalText) { text += additionalText; }
+  void appendText(const std::string& addText) { content.appendText(addText); }
+
+  /**
+   * @brief Generate a unique ID for a TextBox.
+   *
+   * @return std::string
+   */
+  static std::string generateID() {
+    static int counter = 1;
+    return "textbox-" + std::to_string(counter++);
+  }
 
  private:
-  std::string text;
-  int width;
-  int height;
+  std::string id;  // Unique identifier for the TextBox.
+  FormattedText content;
+  int width = 0;
+  int height = 0;
 };
 }  // namespace cse
 
