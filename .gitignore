@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# macOS system files & local settings files
+.DS_Store
+.vscode/settings.json
