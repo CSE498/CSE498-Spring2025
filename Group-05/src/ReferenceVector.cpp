@@ -17,6 +17,18 @@ void ReferenceVector::pop_back() {
 }
 
 /**
+ * Removes an element at a specified index.
+ *
+ * @param index The position of the element to remove.
+ */
+void ReferenceVector::erase(size_t index) {
+  if (index >= mData.size()) {
+    throw std::out_of_range("Index out of range");
+  }
+  mData.erase(mData.begin() + index);
+}
+
+/**
  * Accesses a Datum at the given index.
  *
  * @param index The position of the element.

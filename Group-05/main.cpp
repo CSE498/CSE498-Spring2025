@@ -146,8 +146,8 @@ int main() {
   cse::DataGrid grid;
 
   std::cout << "\n[1] Insert Rows\n";
-  grid.insertRow(0, 0);
-  grid.insertRow(1, 0);
+  grid.insertDefaultRow(0, 0);
+  grid.insertDefaultRow(1, 0);
   std::cout << grid;
 
   std::cout << "\n[2] Insert Columns\n";

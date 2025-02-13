@@ -10,6 +10,7 @@
 #include <assert.h>
 #include <iomanip>
 #include <vector>
+#include <limits>
 
 #include "Datum.h"
 #include "ReferenceVector.h"
