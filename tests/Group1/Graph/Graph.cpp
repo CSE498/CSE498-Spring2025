@@ -2,6 +2,7 @@
 #include "../../../Group-01/Graph/Vertex.hpp"
 #include "../../../Group-01/Graph/Edge.hpp"
 #include "../../../Group-01/Graph/Graph.hpp"
+#include "../Utils/TestUtils.hpp"
 
 #include <vector>
 #include <sstream>
@@ -70,4 +71,50 @@ TEST_CASE("Test cse::Graph", "[base]")
     CHECK(e3_sh->IsBidirectional());
   }
   auto e4 = graph.AddEdge("id1", "id2", true);
+}
+
+TEST_CASE("Test cse::Graph - To file", "Export to file")
+{
+  cse::Graph graph;
+
+  // Test adding vertices
+  auto v1 = graph.AddVertex("id1");
+  auto v2 = graph.AddVertex("id2", 1.5);
+  std::stringstream s;
+
+  graph.ToFile(s);
+
+  std::vector<std::string> lines{"GRAPH:",
+                                 "  Vertices:",
+                                 "    VERTEX:id2",
+                                 "      X:1.5",
+                                 "      Y:0",
+                                 "    VERTEX:id1",
+                                 "      X:0",
+                                 "      Y:0",
+                                 ""};
+  REQUIRE(cse_test_utils::CheckForStringFile(lines, s));
+}
+
+TEST_CASE("Test cse::Graph - From file", "Read from file")
+{
+  std::vector<std::string> lines{"GRAPH:",
+                                 "  Vertices:",
+                                 "    VERTEX:id2",
+                                 "      X:1.5",
+                                 "      Y:0",
+                                 "    VERTEX:id1",
+                                 "      X:1",
+                                 "      Y:1",
+                                 ""};
+  std::stringstream s;
+  cse_test_utils::BuildFileFromVector(lines, s);
+
+  cse::Graph graph(s);
+  CHECK(graph.GetVertex("id1")->GetId() == "id1");
+  REQUIRE_THAT(graph.GetVertex("id1")->GetX(), WithinAbs(1, cse_test_utils::FLOAT_DELTA));
+  REQUIRE_THAT(graph.GetVertex("id1")->GetY(), WithinAbs(1, cse_test_utils::FLOAT_DELTA));
+  REQUIRE_THAT(graph.GetVertex("id2")->GetX(), WithinAbs(1.5, cse_test_utils::FLOAT_DELTA));
+  REQUIRE_THAT(graph.GetVertex("id2")->GetY(), WithinAbs(0, cse_test_utils::FLOAT_DELTA));
+  CHECK(graph.GetVertex("id2")->GetId() == "id2");
 }
