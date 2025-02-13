@@ -1,7 +1,7 @@
 # List of folders containing test files
 TEST_FOLDERS = Graph GraphPosition
 
-BUILD_CPP_FILES = ../../Group-01/Graph/Vertex.cpp ../../Group-01/Graph/Graph.cpp ../../Group-01/GraphPosition/GraphPosition.cpp
+BUILD_CPP_FILES = ../../Group-01/Graph/Vertex.cpp ../../Group-01/Graph/Graph.cpp ../../Group-01/GraphPosition/GraphPosition.cpp ../../Group-01/Distribution/Distribution.cpp
 
 # Find all test files across the specified folders
 TEST_NAMES = $(basename $(notdir $(wildcard $(addsuffix /*.cpp, $(TEST_FOLDERS)))))
