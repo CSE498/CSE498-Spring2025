@@ -8,6 +8,7 @@
 
 #include <optional>
 #include <queue>
+#include <unordered_set>
 #include "../Event/Event.hpp"
 
 namespace cse {
@@ -34,6 +35,7 @@ class EventQueue {
   [[nodiscard]] inline size_t size() const { return eventCount; }
  private:
   std::priority_queue<Event, std::vector<Event>, EventCompare> heap;
+  std::unordered_set<int> ids;
   size_t eventCount = 0;
 };
 

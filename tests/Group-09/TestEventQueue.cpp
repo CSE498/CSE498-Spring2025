@@ -9,12 +9,18 @@
 
 using namespace cse;
 
+/**
+ * @brief Assert the queue is empty upon creation
+ */
 TEST_CASE("Test EventQueue", "[base]")
 {
   EventQueue eq;
   CHECK(eq.size() == 0);
 }
 
+/**
+ * @brief Assert adding an event to the queue increments the size and adds to the heap
+ */
 TEST_CASE("Test EventQueue Add", "[base]")
 {
   EventQueue eq;
@@ -22,9 +28,24 @@ TEST_CASE("Test EventQueue Add", "[base]")
   Event e2(1, 2, "data");
   eq.add(e1);
   eq.add(e2);
+  CHECK(eq.peek() == e1);
   CHECK(eq.size() == 2);
 }
 
+/**
+ * @brief Assert adding an event with the same ID as an existing event throws an exception.
+ */
+TEST_CASE("Test EventQueue Add Duplicate ID", "[base]")
+{
+  EventQueue eq;
+  Event e1(0, 1, "data");
+  eq.add(e1);
+  REQUIRE_THROWS(eq.add(e1));
+}
+
+/**
+ * @brief Assert peeking at the queue returns the event at the top of the heap
+ */
 TEST_CASE("Test EventQueue Peek", "[base]")
 {
   EventQueue eq;
@@ -39,6 +60,9 @@ TEST_CASE("Test EventQueue Peek", "[base]")
   CHECK(eq.peek() == e1);
 }
 
+/**
+ * @brief Assert popping an event from the queue decrements the size and removes the event from the heap
+ */
 TEST_CASE("Test EventQueue Pop", "[base]")
 {
   EventQueue eq;
@@ -58,6 +82,9 @@ TEST_CASE("Test EventQueue Pop", "[base]")
   CHECK(eq.size() == 0);
 }
 
+/**
+ * @brief Assert removing an event from the queue decrements the size and removes the event from the heap
+ */
 TEST_CASE("Test EventQueue Valid Remove", "[base]")
 {
   EventQueue eq;
@@ -77,6 +104,9 @@ TEST_CASE("Test EventQueue Valid Remove", "[base]")
   CHECK(eq.size() == 0);
 }
 
+/**
+ * @brief Assert removing an event that does not exist in the queue does not change the queue
+ */
 TEST_CASE("Test EventQueue Invalid Remove", "[base]")
 {
   EventQueue eq;
@@ -94,6 +124,9 @@ TEST_CASE("Test EventQueue Invalid Remove", "[base]")
   CHECK(!remove.has_value());
 }
 
+/**
+ * @brief Assert updating an event in the queue updates the event's time and maintains the heap
+ */
 TEST_CASE("Test EventQueue Valid Update", "[base]")
 {
   EventQueue eq;
@@ -115,6 +148,9 @@ TEST_CASE("Test EventQueue Valid Update", "[base]")
   CHECK(eq.pop().getTime() == 100);
 }
 
+/**
+ * @brief Assert updating an event that does not exist in the queue throws an exception
+ */
 TEST_CASE("Test EventQueue Invalid Update", "[base]")
 {
   EventQueue eq;

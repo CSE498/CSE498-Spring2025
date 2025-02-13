@@ -5,9 +5,11 @@
  *
  */
 
-#include <iostream>
 #include "EventQueue.hpp"
+
+#include <iostream>
 #include <format>
+#include <cassert>
 
 namespace cse {
 
@@ -16,8 +18,14 @@ namespace cse {
  * @param e The event to add
  */
 void EventQueue::add(const Event &e) {
-  heap.push(e);
-  eventCount++;
+  if (!ids.contains(e.getID())) {
+	heap.push(e);
+	ids.insert(e.getID());
+	eventCount++;
+  } else {
+	auto msg = std::format("Error adding event: Event ID {} already exists in EventQueue", e.getID());
+	throw std::invalid_argument(msg);
+  }
 }
 
 /**
@@ -34,6 +42,7 @@ std::optional<Event> EventQueue::remove(const Event &e) {
 	if (heap.top() != e) temp.push(heap.top());
 	else {
 	  removed = heap.top();
+	  ids.erase(e.getID());
 	  eventCount--;
 	}
 	heap.pop();
@@ -42,6 +51,7 @@ std::optional<Event> EventQueue::remove(const Event &e) {
   // Reassign
   heap = std::move(temp);
 
+  assert(!removed.has_value() || removed.value().getID() == e.getID());
   return removed;
 }
 
@@ -50,9 +60,11 @@ std::optional<Event> EventQueue::remove(const Event &e) {
  * @return The event at the top of the EventQueue
  */
 Event EventQueue::pop() {
+  assert(eventCount > 0); // Ensure there is an event to pop (heap is not empty)
   auto e = heap.top();
   heap.pop();
   eventCount--;
+  ids.erase(e.getID());
   return e;
 }
 
@@ -61,6 +73,7 @@ Event EventQueue::pop() {
  * @return The event at the top of the EventQueue
  */
 Event EventQueue::peek() {
+  assert(eventCount > 0); // Ensure there is an event to pop (heap is not empty)
   return heap.top();
 }
 
@@ -73,6 +86,7 @@ Event EventQueue::peek() {
 void EventQueue::update(const Event &e) {
   auto removed = this->remove(e);
   if (removed.has_value()) {
+	assert(removed.value().getID() == e.getID()); // Reinsert same ID with updated time
 	this->add(e);
   } else {
 	auto msg = std::format("Error updating event: Event ID {} not found in EventQueue", e.getID());
