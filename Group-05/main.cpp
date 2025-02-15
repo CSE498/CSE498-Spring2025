@@ -2,6 +2,7 @@
 #include "src/DataGrid.h"
 #include "src/Datum.h"
 #include "src/ReferenceVector.h"
+#include "src/ExpressionParser.h"
 #include <cmath>
 #include <fstream>
 #include <iostream>

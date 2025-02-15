@@ -4,13 +4,13 @@
  * @author Max Krawec
  */
 
+#include "Datum.h"
+
 #include <cassert>
 #include <cmath>
 #include <iostream>
 #include <limits>
 #include <stdexcept>
-
-#include "Datum.h"
 
 namespace cse {
 
