@@ -1,0 +1,8 @@
+# Ignore CMake build directory
+build/
+cmake-build*
+# Ignore VSCode Setting directory
+.vscode/
+.idea/
+*.txt
+*.idea*
