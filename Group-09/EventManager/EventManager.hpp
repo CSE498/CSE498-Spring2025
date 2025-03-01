@@ -23,7 +23,7 @@ namespace cse {
 class EventManager {
  private:
   EventQueue event_queue_;
-  int clock_time_;
+  std::atomic<int> clock_time_;
   int next_id_;
   std::atomic<bool> running_;
   std::thread clock_thread_;
@@ -36,10 +36,10 @@ class EventManager {
  public:
   EventManager() : clock_time_(0), next_id_(0), running_(false) {};
   ~EventManager() { StopQueue(); };
-  bool PauseEvent(Event &event);
-  bool ResumeEvent(Event &event_id);
+  bool PauseEvent(const Event &event);
+  bool ResumeEvent(const Event &event_id);
   std::optional<Event> AddEvent(int time, std::string data);
-  bool RepeatEvent(cse::Event &event, int time_interval);
+  bool RepeatEvent(const cse::Event &event, int time_interval);
   void StopQueue();
   void StartQueue();
   void RestartQueue();
@@ -59,7 +59,7 @@ class EventManager {
    * @brief Get the current internal time
    * @return The current time in seconds
    */
-  int getTime() const { return clock_time_; }
+  int getTime()const {return clock_time_;}
 
 };
 
