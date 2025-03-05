@@ -9,6 +9,12 @@
 #include "WebLayout.h"
 
 namespace cse {
+
+// Magic Numbers
+constexpr int MAX_WIDTH_PERCENT = 100;
+constexpr int MAX_HEIGHT_PERCENT = 95;
+constexpr int MIN_PERCENT = 0;
+
 /**
  * Adds an image to the web layout
  * @param image to be added
@@ -51,7 +57,7 @@ void WebLayout::removeTextBox(const TextBoxLayout &textBox) {
  * Gets images vector of web layout
  * @return images that are connected
  */
-std::vector<ImageLayout> WebLayout::getImages() {
+const std::vector<ImageLayout> &WebLayout::getImages() {
   return images;
 }
 
@@ -59,7 +65,7 @@ std::vector<ImageLayout> WebLayout::getImages() {
  * Gets text boxes vector of web layout
  * @return textBoxes that are connected
  */
-std::vector<TextBoxLayout> WebLayout::getTextBoxes() {
+const std::vector<TextBoxLayout> &WebLayout::getTextBoxes() {
   return textBoxes;
 }
 
@@ -69,10 +75,14 @@ std::vector<TextBoxLayout> WebLayout::getTextBoxes() {
  * @param width width of the textbox
  * @param height height of the textbox
  */
-void WebLayout::PushTextBox(const std::string &msg, const int &width, const int &height, const int &x, const int &y) {
+void const WebLayout::renderTextBox(const std::string &msg,
+                                    const int &width,
+                                    const int &height,
+                                    const int &x,
+                                    const int &y) {
 
-  assert(width > 0 && height > 0); //assert width and height are positive
-  assert(x > 0 && y > 0); //assert x and y are positive
+  assert(width >= MIN_PERCENT && height >= MIN_PERCENT); //assert width and height are positive
+  assert(x >= MIN_PERCENT && y >= MIN_PERCENT); //assert x and y are positive
 
   EM_ASM({
            var msg = UTF8ToString($0);
@@ -80,17 +90,18 @@ void WebLayout::PushTextBox(const std::string &msg, const int &width, const int 
            var height = $2;
            var x = $3;
            var y = $4;
-
+           var MAX_WIDTH_PERCENT = $5;
+           var MAX_HEIGHT_PERCENT = $6;
 
            // Calculate the ratio to view height/width (1%)
-           var widthRatio = document.documentElement.clientWidth / 100.0;
-           var heightRatio = document.documentElement.clientHeight / 100.0;
+           var widthRatio = document.documentElement.clientWidth / MAX_WIDTH_PERCENT;
+           var heightRatio = document.documentElement.clientHeight / MAX_WIDTH_PERCENT;
 
            // Don't let placement exceed 100% of view width/height
-           if (width > 100) { width = 100; }
-           if (height > 95) { height = 95; }
-           if (x > 100) { x = 100 - width; }
-           if (y > 95) { y = 95 - height; }
+           if (width > MAX_WIDTH_PERCENT) { width = MAX_WIDTH_PERCENT; }
+           if (height > MAX_HEIGHT_PERCENT) { height = MAX_HEIGHT_PERCENT; }
+           if (x > MAX_WIDTH_PERCENT) { x = MAX_WIDTH_PERCENT - width; }
+           if (y > MAX_HEIGHT_PERCENT) { y = MAX_HEIGHT_PERCENT - height; }
 
 
            // Finds div with presentation-zone id, where all boxes and images will be placed
@@ -107,7 +118,7 @@ void WebLayout::PushTextBox(const std::string &msg, const int &width, const int 
                      + 'vw;">'
                      + msg + '</p>';
            }
-         }, msg.c_str(), width, height, x, y
+         }, msg.c_str(), width, height, x, y, MAX_WIDTH_PERCENT, MAX_HEIGHT_PERCENT
   );
 }
 
@@ -119,12 +130,12 @@ void WebLayout::PushTextBox(const std::string &msg, const int &width, const int 
  * @param xLoc of image
  * @param yLoc of image
  */
-void WebLayout::PushImage(const std::string &url,
-                          const int &width,
-                          const int &height, const int &x, const int &y) {
+void const WebLayout::renderImage(const std::string &url,
+                                  const int &width,
+                                  const int &height, const int &x, const int &y) {
 
-  assert(width > 0 && height > 0); //assert width and height are positive
-  assert(x > 0 && y > 0); //assert x and y are positive
+  assert(width >= MIN_PERCENT && height >= MIN_PERCENT); //assert width and height are positive
+  assert(x >= MIN_PERCENT && y >= MIN_PERCENT); //assert x and y are positive
 
   EM_ASM({
            var msg = UTF8ToString($0);
@@ -132,12 +143,14 @@ void WebLayout::PushImage(const std::string &url,
            var height = $2;
            var x = $3;
            var y = $4;
+           var MAX_WIDTH_PERCENT = $5;
+           var MAX_HEIGHT_PERCENT = $6;
 
            // Don't let placement exceed 100% of view width/height or 95% height
-           if (width > 100) { width = 100; }
-           if (height > 95) { height = 95; }
-           if (x > 100) { x = 100 - width; }
-           if (y > 95) { y = 95 - height; }
+           if (width > MAX_WIDTH_PERCENT) { width = MAX_WIDTH_PERCENT; }
+           if (height > MAX_HEIGHT_PERCENT) { height = MAX_HEIGHT_PERCENT; }
+           if (x > MAX_WIDTH_PERCENT) { x = MAX_WIDTH_PERCENT - width; }
+           if (y > MAX_HEIGHT_PERCENT) { y = MAX_HEIGHT_PERCENT - height; }
 
            // Finds div with presentation-zone id, where all boxes and images will be placed
            var imageBoxDiv = document.getElementById("presentation-zone");
@@ -146,30 +159,42 @@ void WebLayout::PushImage(const std::string &url,
                  "<img src='" + msg + "' style='position: absolute; left: " + x + "vw; top: " + y
                      + "vh; margin: 0; object-fit: contain; width:" + width + "vw; height:" + height + "vh;' />";
            }
-         }, url.c_str(), width, height, x, y
+         }, url.c_str(), width, height, x, y, MAX_WIDTH_PERCENT, MAX_HEIGHT_PERCENT
   );
 }
 
 /**
  * Loads all text boxes and images on current web layout
  */
-void WebLayout::LoadPage() {
+void WebLayout::loadPage() {
   // Display text boxes
-  for (std::vector<TextBoxLayout>::iterator it = textBoxes.begin(); it != textBoxes.end(); it++) {
+  for (const auto &layout : textBoxes) {
+
+    // Future add functionality to fully format text
 
     // Verify values are valid
-    if ((it->textBox.getHeight() > 0 && it->textBox.getWidth() > 0) && (it->x >= 0 && it->y >= 0)) {
-      PushTextBox(it->textBox.getText(), it->textBox.getWidth(), it->textBox.getHeight(), it->x, it->y);
+    if ((layout.textBox->getHeight() > MIN_PERCENT && layout.textBox->getWidth() > MIN_PERCENT)
+        && (layout.xPos >= MIN_PERCENT && layout.yPos >= MIN_PERCENT)) {
+      renderTextBox(layout.textBox->getFormattedText().getText(),
+                    layout.textBox->getWidth(),
+                    layout.textBox->getHeight(),
+                    layout.xPos,
+                    layout.yPos);
     }
 
   }
 
   // Display images
-  for (std::vector<ImageLayout>::iterator it = images.begin(); it != images.end(); it++) {
+  for (const auto &layout : images) {
 
     // Verify values are valid
-    if ((it->image.getHeight() > 0 && it->image.getWidth() > 0) && (it->x >= 0 && it->y >= 0)) {
-      PushImage(it->image.getURL(), it->image.getWidth(), it->image.getHeight(), it->x, it->y);
+    if ((layout.image->getHeight() > MIN_PERCENT && layout.image->getWidth() > MIN_PERCENT)
+        && (layout.xPos >= MIN_PERCENT && layout.yPos >= MIN_PERCENT)) {
+      renderImage(layout.image->getURL(),
+                  layout.image->getWidth(),
+                  layout.image->getHeight(),
+                  layout.xPos,
+                  layout.yPos);
     }
   }
 }

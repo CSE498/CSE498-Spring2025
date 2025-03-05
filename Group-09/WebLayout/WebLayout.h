@@ -7,6 +7,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <memory>
 #include <emscripten.h>
 #include "../Image/image.hpp"
 #include "../TextBox/TextBox.hpp"
@@ -14,35 +15,35 @@
 namespace cse {
 
 struct TextBoxLayout {
-  TextBox textBox;
-  int y;
-  int x;
+  std::shared_ptr<TextBox> textBox;
+  int yPos;
+  int xPos;
 
-  TextBoxLayout() : textBox(), x(0), y(0) {};
+  TextBoxLayout() : textBox(), xPos(0), yPos(0) {};
 
-  TextBoxLayout(const TextBox &textBox, int x, int y)
-      : textBox(textBox), x(x), y(y) {}
+  TextBoxLayout(std::shared_ptr<TextBox> textBox, int x, int y)
+      : textBox(std::move(textBox)), xPos(x), yPos(y) {}
 
   bool operator==(const TextBoxLayout &textboxLayout) const {
-    return ((textboxLayout.textBox.getText() == textBox.getText())
-        && (textboxLayout.textBox.getWidth() == textBox.getWidth())
-        && (textboxLayout.textBox.getHeight() == textBox.getHeight()));
+    return ((textboxLayout.textBox->getFormattedText().getText() == textBox->getFormattedText().getText())
+        && (textboxLayout.textBox->getWidth() == textBox->getWidth())
+        && (textboxLayout.textBox->getHeight() == textBox->getHeight()));
   }
 };
 
 struct ImageLayout {
-  Image image;
-  int y;
-  int x;
+  std::shared_ptr<Image> image;
+  int yPos;
+  int xPos;
 
-  ImageLayout() : image("", 0, 0), x(0), y(0) {};
+  ImageLayout() : image(), yPos(0), xPos(0) {};
 
-  ImageLayout(const Image &image, int x, int y)
-      : image(image), x(x), y(y) {}
+  ImageLayout(std::shared_ptr<Image> image, int x, int y)
+      : image(std::move(image)), yPos(y), xPos(x) {}
 
   bool operator==(const ImageLayout &imageLayout) const {
-    return ((imageLayout.image.getURL() == image.getURL()) && (imageLayout.image.getWidth() == image.getWidth())
-        && (imageLayout.image.getHeight() == image.getHeight()));
+    return ((imageLayout.image->getURL() == image->getURL()) && (imageLayout.image->getWidth() == image->getWidth())
+        && (imageLayout.image->getHeight() == image->getHeight()));
   }
 };
 
@@ -51,8 +52,8 @@ class WebLayout {
   std::vector<TextBoxLayout> textBoxes;
   std::vector<ImageLayout> images;
 
-  void PushTextBox(const std::string &msg, const int &width, const int &height, const int &x, const int &y);
-  void PushImage(const std::string &url, const int &width, const int &height, const int &x, const int &y);
+  void const renderTextBox(const std::string &msg, const int &width, const int &height, const int &x, const int &y);
+  void const renderImage(const std::string &url, const int &width, const int &height, const int &x, const int &y);
 
  public:
   WebLayout() = default;
@@ -61,10 +62,11 @@ class WebLayout {
   void removeImage(const ImageLayout &image);
   void addTextBox(const TextBoxLayout &textBox);
   void removeTextBox(const TextBoxLayout &textBox);
-  void LoadPage();
-  void TransitionToPage(const WebLayout &newPage);
-  std::vector<ImageLayout> getImages();
-  std::vector<TextBoxLayout> getTextBoxes();
+  void loadPage();
+  const std::vector<ImageLayout> &getImages();
+  const std::vector<TextBoxLayout> &getTextBoxes();
+
+  //TODO: Future Implement Clear Layout Function
 
 };
 }
