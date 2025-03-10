@@ -184,7 +184,7 @@ None
 
 **Class Description:**
 
-The Audited Vector class, when in release mode, acts exactly the same as the Vector STD class. However, when it is in debug mode, it will become significantly less efficient but will check whether the index is in range or not and whether it is valid. It will also perform similar checks on iterators for the vector as well.
+The Audited Vector class, when in release mode, acts exactly the same as the Vector STL class. However, when it is in debug mode, it will become significantly less efficient but will check whether the index is in range or not and whether it is valid. It will also perform similar checks on iterators for the vector as well.
 
 **Similar Classes:**
 

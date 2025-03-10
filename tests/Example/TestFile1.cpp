@@ -2,9 +2,13 @@
 
 #include <vector>
 
+
+
 TEST_CASE("Test std::vector", "[base]")
 {
   std::vector<int> v{0, 1, 2, 3, 4};
 
-  CHECK(v.size() == 5);
+  REQUIRE(v.size() == 5);
+  CHECK(v[2] == 2);
+  CHECK(v[3] == 3);
 }

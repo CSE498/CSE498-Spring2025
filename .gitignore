@@ -30,5 +30,13 @@
 *.exe
 *.out
 *.app
-.vscode
+
+# IDE files
+.idea/
+.vscode/
+
+# Build files
+build/
+cmake-build-*/
 **.dSYM
+.DS_Store
