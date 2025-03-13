@@ -47,12 +47,17 @@ TEST_CASE("Size() functionality", "[size]") {
   cse::Datum d2("test");
   cse::Datum d3(987);
   cse::ReferenceVector<cse::Datum> reference_vector;
+  CHECK(reference_vector.Size() == 0);
 
   reference_vector.PushBack(d1);
   reference_vector.PushBack(d2);
   reference_vector.PushBack(d3);
 
   CHECK(reference_vector.Size() == 3);
+
+  reference_vector.PopBack();
+
+  CHECK(reference_vector.Size());
 }
 
 TEST_CASE("Empty() functionality", "[empty]") {
@@ -63,6 +68,10 @@ TEST_CASE("Empty() functionality", "[empty]") {
   reference_vector.PushBack(d1);
 
   CHECK(!reference_vector.Empty());
+
+  reference_vector.PopBack();
+
+  CHECK(reference_vector.Empty());
 }
 
 TEST_CASE("Clear() functionality", "[clear]") {
@@ -72,6 +81,14 @@ TEST_CASE("Clear() functionality", "[clear]") {
 
   reference_vector.Clear();
 
+  CHECK(reference_vector.Empty());
+
+  cse::Datum d2(456.456);
+  reference_vector.PushBack(d2);
+
+  CHECK(!reference_vector.Empty());
+
+  reference_vector.Clear();
   CHECK(reference_vector.Empty());
 }
 
