@@ -1,6 +1,7 @@
 #include "Vertex.hpp"
 
 #include "Edge.hpp"
+#include "GraphExceptions.hpp"
 #include <cassert>
 #include <iostream>
 #include <istream>
@@ -92,7 +93,7 @@ namespace cse {
   std::shared_ptr<cse::Edge> const cse::Vertex::GetEdge(cse::Vertex const &to) const {
     auto it = edges.find(to.GetId());
     if (it == edges.end() || it->second.expired()) {
-      throw std::runtime_error("Edge from " + id + " to " + to.GetId() + " does not exist");
+      throw edge_not_found_error("Edge from " + id + " to " + to.GetId());
     }
     return it->second.lock();
   }

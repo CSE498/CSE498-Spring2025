@@ -2,6 +2,7 @@
 #include "../../../Group-01/Graph/Vertex.hpp"
 #include "../../../Group-01/Graph/Edge.hpp"
 #include "../../../Group-01/Graph/Graph.hpp"
+#include "../../../Group-01/Graph/GraphExceptions.hpp"
 
 #include <vector>
 #include <sstream>
@@ -18,11 +19,11 @@ TEST_CASE("Test cse::Graph", "[base]")
   CHECK(graph.GetVertex("id1")->GetId() == "id1");
   CHECK(graph.GetVertex("id2")->GetId() == "id2");
 
-  CHECK_THROWS_AS(graph.AddVertex("id1"), std::runtime_error);
+  CHECK_THROWS_AS(graph.AddVertex("id1"), cse::vertex_already_exists_error);
 
   // Test removing vertices
   graph.RemoveVertex("id1");
-  CHECK_THROWS_AS(graph.GetVertex("id1"), std::out_of_range);
+  CHECK_THROWS_AS(graph.GetVertex("id1"), cse::vertex_not_found_error);
 
   // Test adding edges
   v1 = graph.AddVertex("id1");
@@ -54,9 +55,9 @@ TEST_CASE("Test cse::Graph", "[base]")
   CHECK(!v4_v5_edge.expired());
   graph.RemoveEdge(e2);
   CHECK(v4_v5_edge.expired());
-  CHECK_THROWS_AS(graph.GetEdge(v4->GetId(), v5->GetId()), std::runtime_error);
-  CHECK_THROWS_AS(graph.RemoveEdge(e2), std::out_of_range);
-  CHECK_THROWS_AS(v4->GetEdge(v5), std::runtime_error);
+  CHECK_THROWS_AS(graph.GetEdge(v4->GetId(), v5->GetId()), cse::edge_not_found_error);
+  CHECK_THROWS_AS(graph.RemoveEdge(e2), cse::edge_not_found_error);
+  CHECK_THROWS_AS(v4->GetEdge(v5), cse::edge_not_found_error);
 
   // Test bidirectional edges
   auto e3 = graph.AddEdge("id1", "id2", true);

@@ -1,5 +1,6 @@
 #pragma once
 #include "../Util/Util.hpp"
+#include "GraphExceptions.hpp"
 #include "Vertex.hpp"
 #include <iostream>
 #include <string>

@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../Util/Util.hpp"
+#include "GraphExceptions.hpp"
 
 namespace cse {
   class Edge;

@@ -7,6 +7,7 @@
 
 #include "../Util/Util.hpp"
 #include "Edge.hpp"
+#include "GraphExceptions.hpp"
 #include "Vertex.hpp"
 
 namespace cse {
@@ -52,7 +53,7 @@ namespace cse {
     cse::Edge &GetEdge(std::string const &from_id, std::string const &to_id);
     void RemoveEdge(std::string const &edge_id);
     void RemoveEdge(cse::Edge const &edge);
-
+    
     bool IsConnected(cse::Vertex const &v1, cse::Vertex const &v2) const;
     bool IsConnected(std::string const &v1_id, std::string const &v2_id) const;
   };
