@@ -1,0 +1,45 @@
+# Ignore CMake build directory
+/build/
+out/
+bin/
+obj/
+
+# Ignore CMake-generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Ignore Visual Studio CMake-related files
+CMakeScripts/
+CMakeUserPresets.json
+CMakePresets.json
+
+# Ignore Ninja build files
+.ninja_deps
+.ninja_log
+build.ninja
+
+# Ignore IDE project files (CLion, Qt Creator, VSCode, etc.)
+.idea/
+.vscode/
+compile_commands.json
+
+# Ignore compiled libraries and executables
+*.exe
+*.out
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Ignore log files and temporary files
+*.log
+*.tmp
+*.swp
+*~
+
+# Ignore Debug/Release folders (if used)
+Debug/
+Release/
