@@ -2,10 +2,10 @@
 
 #include "../../Group-03/src/DataTracker.h"
 #include <vector>
-
+#define CATCH_CONFIG_MAIN
 
 TEST_CASE("DataTrackerTest Empty", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     CHECK(tracker.total() == 0);
     CHECK(tracker.mean() == 0.0);
     CHECK(tracker.median() == 0.0);
@@ -14,7 +14,7 @@ TEST_CASE("DataTrackerTest Empty", "[DataTracker]") {
 }
 
 TEST_CASE("DataTrackerTest Add", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     tracker.add_value(10.0);
     CHECK(tracker.total() == 1);
     CHECK(tracker.mean() == 10.0);
@@ -24,7 +24,7 @@ TEST_CASE("DataTrackerTest Add", "[DataTracker]") {
 }
 
 TEST_CASE("DataTracker Multiple", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     tracker.add_value(5.0);
     tracker.add_value(10.0);
     tracker.add_value(15.0);
@@ -36,7 +36,7 @@ TEST_CASE("DataTracker Multiple", "[DataTracker]") {
 }
 
 TEST_CASE("DataTracker Delete", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     tracker.add_value(5.0);
     tracker.add_value(10.0);
     tracker.add_value(15.0);
@@ -50,7 +50,7 @@ TEST_CASE("DataTracker Delete", "[DataTracker]") {
 
 
 TEST_CASE("DataTracker Even Number", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     tracker.add_value(1.0);
     tracker.add_value(3.0);
     tracker.add_value(2.0);
@@ -59,7 +59,7 @@ TEST_CASE("DataTracker Even Number", "[DataTracker]") {
 }
 
 TEST_CASE("Delete Nonexistent Value", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     tracker.add_value(5.0);
     tracker.add_value(10.0);
     CHECK(tracker.delete_value(15.0) == false);  // Should return false
@@ -67,7 +67,7 @@ TEST_CASE("Delete Nonexistent Value", "[DataTracker]") {
 }
 
 TEST_CASE("Duplicate Values Handling", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     tracker.add_value(10.0);
     tracker.add_value(10.0);
     tracker.add_value(20.0);
@@ -78,7 +78,7 @@ TEST_CASE("Duplicate Values Handling", "[DataTracker]") {
 }
 
 TEST_CASE("Negative and Large Values", "[DataTracker]") {
-    cse::DataTracker tracker;
+    cse::DataTracker<int> tracker;
     tracker.add_value(-100.0);
     tracker.add_value(5000.0);
     tracker.add_value(200.0);

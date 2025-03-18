@@ -145,10 +145,4 @@ FixedPoint<Ratio> FixedPoint<Ratio>::fromRaw(StorageType rawValue) {
     return fp;
 }
 
-// Explicit Instantiations
-template class FixedPoint<std::ratio<1>>;
-template class FixedPoint<std::ratio<10>>;
-template class FixedPoint<std::ratio<100>>;
-template class FixedPoint<std::ratio<1000>>;
-
 } // namespace cse

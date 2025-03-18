@@ -5,104 +5,131 @@
 * 
 */
 
-#include "DataTracker.h" 
-#include <algorithm>
-#include <numeric>
-#include <cassert>
-
+#include "DataTracker.h"
+#include <string>
 namespace cse {
 
 // Adds a specified value to the vector
-void DataTracker::add_value(double value) {
-    size_t old_size = values.size();
+template <typename T>
+void DataTracker<T>::add_value(const T& value) {
     values.push_back(value);
-
-    // Assertion to ensure the size of the vector increased by one after insertion
-    assert(values.size() == old_size + 1 && "Size did not increase by one");
 }
 
-// Finds a specified value and deletes the first instance of it, returning true if successful
-bool DataTracker::delete_value(double value) {
-    size_t old_size = values.size();
-    
-    // Find the first occurrence of the value in the vector
+// Removes a value if found, returns true if successful
+template <typename T>
+bool DataTracker<T>::delete_value(const T& value) {
     auto it = std::find(values.begin(), values.end(), value);
-    
-    // If found, erase the element and return true
     if (it != values.end()) {
         values.erase(it);
-        assert(values.size() < old_size && "Size should decrease after deletion");
         return true;
     }
-
-    // Return false if the value was not found
     return false;
 }
 
-
-// Calculates and returns the average (mean) of the data in the object
-double DataTracker::mean() const {
-    if (values.empty()) return 0.0; // Return 0.0 if no elements exist
-
-    // Compute the mean using std::accumulate
-    double mean = std::accumulate(values.begin(), values.end(), 0.0) / values.size();
-
-    // Assertion to ensure the mean lies between min and max values
-    assert(mean >= min() && mean <= max() && "Mean should be within the range.");
-
-    return mean;
+// Calculates and returns the mean 
+template <typename T>
+double DataTracker<T>::mean() const {
+    if (values.empty()) return 0.0;
+    if constexpr (std::is_arithmetic_v<T>){
+        return static_cast<double>(std::accumulate(values.begin(), values.end(), 0.0)) / values.size();
+    }
+    else {
+        return T();
+    }
 }
 
-// Sorts the vector and returns the median value
-double DataTracker::median() const {
-    if (values.empty()) return 0.0; // Return 0.0 if no elements exist
+// Calculates and returns the median
+template <typename T>
+double DataTracker<T>::median() const {
+    if (values.empty()) return 0.0;
 
-    // Create a copy of the vector and sort it
-    std::vector<double> sorted_values = values;
+    std::vector<T> sorted_values = values;
     std::sort(sorted_values.begin(), sorted_values.end());
 
     size_t size = sorted_values.size();
-    
     if (size % 2 == 0) {
-        // If the size of the vector is even, return the average of the two middle numbers
         return (sorted_values[size / 2 - 1] + sorted_values[size / 2]) / 2.0;
     } else {
-        // If the size of the vector is odd, return the middle value
         return sorted_values[size / 2];
     }
 }
 
-// Returns the minimum value in the dataset
-double DataTracker::min() const {
-    if (values.empty()) return 0.0; // Return 0.0 if no elements exist
-    
-    // Get the minimum element in the vector
-    double min = *std::min_element(values.begin(), values.end());
+// Calculates and returns the mode
+template <typename T>
+T DataTracker<T>::mode() const {
+    if (values.empty()) return T();
 
-    // Assertion to ensure that the minimum value is truly the smallest
-    assert(std::all_of(values.begin(), values.end(), [&](double v) { return v >= min; }) && 
-           "Min value is not actually the minimum.");
+    std::unordered_map<T, int> frequency;
+    for (const auto& val : values) {
+        frequency[val]++;
+    }
 
-    return min;
+    auto max_freq = [](const auto& a, const auto& b) { return a.second < b.second; };
+
+    return std::max_element(frequency.begin(), frequency.end(), max_freq)->first;
+}
+// Calculates and returns the variance
+template <typename T>
+double DataTracker<T>::variance() const {
+    if (values.empty()) return 0.0;
+    if constexpr (std::is_arithmetic_v<T>){
+        double mean_value = mean();
+        double variance_sum = 0.0;
+
+        for (const auto& val : values) {
+            variance_sum += std::pow(val - mean_value, 2);
+        }
+
+        return variance_sum / values.size();
+    }
+    else {
+        return T();
+    }
 }
 
-// Returns the maximum value in the dataset
-double DataTracker::max() const {
-    if (values.empty()) return 0.0; // Return 0.0 if no elements exist
-
-    // Get the maximum element in the vector
-    double max = *std::max_element(values.begin(), values.end());
-
-    // Assertion to ensure that the maximum value is truly the largest
-    assert(std::all_of(values.begin(), values.end(), [&](double v) { return v <= max; }) && 
-           "Max value is not actually the maximum.");
-
-    return max;
+// Returns the minimum value
+template <typename T>
+T DataTracker<T>::min() const {
+    if (values.empty()) return T();
+    if constexpr (std::is_arithmetic_v<T>){
+        return *std::min_element(values.begin(), values.end());
+    }
+    else return T();
 }
 
-// Returns the total number of elements in the dataset
-size_t DataTracker::total() const {
+// Returns the maximum value
+template <typename T>
+T DataTracker<T>::max() const {
+    if (values.empty()) return T();
+    if constexpr (std::is_arithmetic_v<T>){
+        return *std::max_element(values.begin(), values.end());
+    }
+    else{
+        return T();
+    }
+}
+
+// Returns the total number of elements
+template <typename T>
+size_t DataTracker<T>::total() const {
     return values.size();
 }
 
+// Determines if there is a winner (if any value surpasses 80% of total)
+template <typename T>
+std::optional<T> DataTracker<T>::winner() const {
+    if (values.empty()) return false;
+
+    std::unordered_map<T, int> frequency;
+    size_t threshold = static_cast<size_t>(values.size() * 0.8);
+
+    for (const auto& val : values) {
+        if (++frequency[val] > threshold) return val;
+    }
+
+    return false;
+}
+
+template class DataTracker<int>;
+template class DataTracker<double>;
 } // namespace cse

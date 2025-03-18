@@ -2,7 +2,7 @@
 #include "../../Group-03/src/FunctionSet.h"
 #include <cstddef>
 #include <iostream>
-
+#define CATCH_CONFIG_MAIN
 int func1(int x){return x+2;}
 int func2(int x){return x+1;}
 int func3(int x){return x*3;}

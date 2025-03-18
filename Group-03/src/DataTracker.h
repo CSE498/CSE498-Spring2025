@@ -9,21 +9,34 @@
 #define DATATRACKER_H
 
 #include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <numeric>
+#include <cmath>
+#include <cassert>
+#include <optional>
 
 namespace cse {
-class DataTracker {
-private:
-    std::vector<double> values; //main container
 
+template <typename T>
+class DataTracker {
 public:
-    void add_value(double value);
-    bool delete_value(double value);
+    void add_value(const T& value);
+    bool delete_value(const T& value);
+
     double mean() const;
     double median() const;
-    double min() const;
-    double max() const;
+    T mode() const;
+    double variance() const;
+    T min() const;
+    T max() const;
     size_t total() const;
-};
-} // namespace cse
 
-#endif // DATATRACKER_H
+    std::optional<T> winner() const;
+
+private:
+    std::vector<T> values;
+};
+
+} // namespace cse
+#endif

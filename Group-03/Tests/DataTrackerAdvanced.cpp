@@ -1,8 +1,7 @@
 #include "../../third-party/Catch/single_include/catch2/catch.hpp"
 
-#include "../../Group-03/src/DataTracker.h"
+#include "../src/DataTracker.h"
 #include <vector>
-#define CATCH_CONFIG_MAIN
 
 TEST_CASE("Advanced DataTracker Mode", "[DataTracker]") {
     cse::DataTracker<int> tracker;
@@ -29,13 +28,13 @@ TEST_CASE("Advanced DataTracker Variance", "[DataTracker]") {
     CHECK(tracker.variance() == Approx(4.0));
 }
 
-//TEST_CASE("Advanced DataTracker Template Support", "[DataTracker]") {
-//    cse::DataTracker<std::string> tracker;
-//    tracker.add_value("apple");
-//    tracker.add_value("banana");
-//    tracker.add_value("apple");
-//    CHECK(tracker.mode() == "apple");
-//}
+TEST_CASE("Advanced DataTracker Template Support", "[DataTracker]") {
+    cse::DataTracker<std::string> tracker;
+    tracker.add_value("apple");
+    tracker.add_value("banana");
+    tracker.add_value("apple");
+    CHECK(tracker.mode() == "apple");
+}
 
 TEST_CASE("Advanced DataTracker Prey-Predator Win Condition", "[DataTracker]") {
     cse::DataTracker<int> tracker;

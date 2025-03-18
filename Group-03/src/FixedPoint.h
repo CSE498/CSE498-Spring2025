@@ -1,5 +1,4 @@
-#ifndef FIXEDPOINT_H
-#define FIXEDPOINT_H
+#pragma once
 
 #include <cstdint>
 #include <ratio>
@@ -35,7 +34,7 @@ public:
     FixedPoint& operator*=(const FixedPoint& other);
     FixedPoint& operator/=(const FixedPoint& other);
 
-    // Increment & Decrement
+    // Increment and decrement
     FixedPoint& operator++();
     FixedPoint operator++(int);
     FixedPoint& operator--();
@@ -59,13 +58,10 @@ private:
     static FixedPoint fromRaw(StorageType rawValue);
 };
 
-// Stream output (fixed: now a free function)
+// Stream output
 template <typename Ratio>
 std::ostream& operator<<(std::ostream& os, const FixedPoint<Ratio>& fp) {
     return os << static_cast<double>(fp);
-
 }
 
 } // namespace cse
-
-#endif // FIXEDPOINT_H
