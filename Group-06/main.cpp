@@ -39,12 +39,12 @@ void runErrorManager() {
     manager.setAction(cse::ErrorManager::ErrorLevel::Warning, [] () {
         std::cout << "Additional action because we triggered Warning\n";
     });
-    manager.printError("Test message error", cse::ErrorManager::ErrorLevel::Info);
-    manager.printError("Test message error", cse::ErrorManager::ErrorLevel::Warning);
-    manager.printError("Test message error", cse::ErrorManager::ErrorLevel::Fatal);
-    manager.printError(34, "Test message error", cse::ErrorManager::ErrorLevel::Fatal);
+    manager.printMessage("Test message error", cse::ErrorManager::ErrorLevel::Info);
+    manager.printMessage("Test message error", cse::ErrorManager::ErrorLevel::Warning);
+    manager.printMessage("Test message error", cse::ErrorManager::ErrorLevel::Fatal);
+    manager.printMessage(34, "Test message error", cse::ErrorManager::ErrorLevel::Fatal);
     manager.enableColors(false);
-    manager.printError("Message with disabled colors", cse::ErrorManager::ErrorLevel::Info);
+    manager.printMessage("Message with disabled colors", cse::ErrorManager::ErrorLevel::Info);
 }
 
 void runStaticString() {
