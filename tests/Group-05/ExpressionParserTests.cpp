@@ -40,3 +40,32 @@ TEST_CASE("Parser Evaluations", "[parser]") {
   REQUIRE(parser.Evaluate("{val7} / {val2}") == 0.5);
   
   }
+
+  TEST_CASE("Advanced Parser Funcitonality", "[parser]") {
+    cse::ExpressionParser parser;
+    parser.SetSymbolTable("val1", -2);
+    parser.SetSymbolTable("val2", 2);
+    parser.SetSymbolTable("val3", -15);
+    parser.SetSymbolTable("val4", 15);
+    parser.SetSymbolTable("val5", 0);
+    parser.SetSymbolTable("val6", 30);
+    parser.SetSymbolTable("val7", 1);
+    parser.SetSymbolTable("val8", M_PI);
+    parser.SetSymbolTable("val9", 4);
+    parser.SetSymbolTable("val10", M_PI/2);
+    parser.SetSymbolTable("val11", M_PI/3);
+    parser.SetSymbolTable("val12", 8);
+    parser.SetSymbolTable("val13", 9);
+    parser.SetSymbolTable("val14", 27);
+
+  
+    REQUIRE(parser.Evaluate("cos({val8})") == -1);
+    REQUIRE(parser.Evaluate("sin({val8}))") == sin(M_PI));
+    REQUIRE(parser.Evaluate("cos({val11})") == cos(M_PI/3));
+    REQUIRE(parser.Evaluate("sin({val10})") == 1);
+
+    REQUIRE(parser.Evaluate("pow({val2}, {val2})") == 4);
+    REQUIRE(parser.Evaluate("pow({val1}, {val2})") == 4);
+    REQUIRE(parser.Evaluate("pow({val2}, {val1})") == 0.25);
+
+}
