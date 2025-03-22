@@ -3,6 +3,7 @@
  * @author Nitish Maindoliya
  */
 
+#include <cse/AdvancedDataMap.hpp>
 #include <iostream>
 
 int main() {

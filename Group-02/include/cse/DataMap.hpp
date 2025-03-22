@@ -1,5 +1,5 @@
 /**
-* @file DataMap.h
+* @file DataMap.hpp
 * @author Rahul Baragur
 */
 
@@ -7,11 +7,10 @@
 
 #include <any>
 #include <cassert>
+#include <sstream>
 #include <string>
 #include <typeinfo>
 #include <unordered_map>
-#include <sstream>
-
 
 namespace cse {
 
@@ -60,7 +59,7 @@ class DataMap {
   * @param val value to be associated with key within DataMap
   */
   template <typename T>
-  [[maybe_unused]] void insert(const std::string& name, const T& val) {
+  inline void insert(const std::string& name, const T& val) {
     // https://stackoverflow.com/questions/3692954/add-custom-messages-in-assert custom messages in assert trick I have implemented within
     assert(!contains(name) && "Key already exists within DataMap");
     m_map[name] = val;
@@ -75,11 +74,11 @@ class DataMap {
   * @return
   */
   template <typename T>
-  [[maybe_unused]] T at(const std::string& name) {
+  inline T at(const std::string& name) const {
     assert(contains(name) && "Key does not exist in DataMap");
-    const std::any& val = m_map[name];
+    const std::any& val = m_map.find(name)->second;
     assert(val.type() == typeid(T) && "Wrong type requested from what is contained within DataMap for value");
-    return std::any_cast<T>(m_map[name]);
+    return std::any_cast<T>(val);
   }
 
   /**
@@ -91,21 +90,30 @@ class DataMap {
    * @return T
    */
   template <typename T>
-  [[maybe_unused]] T get(const std::string& name) {
+  inline T get(const std::string& name) {
     if (!m_map.contains(name)) {
-      m_map[name] = std::any(T());
+      m_map[name] = std::any(T{});
     }
     assert(m_map[name].type() == typeid(T) && "Wrong type requested from what is contained within DataMap for value");
     return std::any_cast<T>(m_map[name]);
   }
-
-  [[nodiscard]] bool contains(const std::string& name) const;
+  /**
+    * Check if key is within the DataMap
+    * @param name std::string name to be found
+    * @return bool if key exists or not
+     *
+     * (For grading purposes of initial specs, this function function was renamed from keyContains to better fit naming
+     * convention)
+    */
+  [[nodiscard]] inline bool contains(const std::string& name) const {
+    return (m_map.find(name) != m_map.end());
+  }
 
   /**
     * Delete a key from the map
     * @param name key to be deleted
     */
-  [[maybe_unused]] void erase(const std::string& name) {
+  inline void erase(const std::string& name) {
     assert(contains(name) && "Key does not exist in DataMap");
     m_map.erase(name);
   }
@@ -113,7 +121,7 @@ class DataMap {
   /**
     * Clear the DataMap
     */
-  [[maybe_unused]] void clear() {
+  inline void clear() {
     assert(!empty() && "Datamap is not empty");
     m_map.clear();
   }
@@ -122,14 +130,14 @@ class DataMap {
     * Gives the size of the map
     * @return unsigned long map size
     */
-  [[maybe_unused]] [[nodiscard]] size_t size() const {
+  [[nodiscard]] inline size_t size() const {
     return m_map.size();
   }
 
   /**
     * Emptys the DataMap
     */
-  [[maybe_unused]] [[nodiscard]] bool empty() const {
+  [[nodiscard]] inline bool empty() const {
     return m_map.empty();
   }
 
@@ -138,7 +146,7 @@ class DataMap {
     * @param name key to be found
     * @return unsigned long # of keys
     */
-  [[maybe_unused]] [[nodiscard]] size_t count(const std::string& name) const {
+  [[nodiscard]] inline size_t count(const std::string& name) const {
     return m_map.count(name);
   }
 
@@ -149,13 +157,12 @@ class DataMap {
    * @return std::string of value
    */
   template <typename T>
-  [[maybe_unused]] std::string to_string(const std::string & name) {
+  inline std::string to_string(const std::string& name) {
     assert(contains(name) && "Key does not exist in DataMap");
     T value = get<T>(name);
     std::stringstream ss;
     ss << value;
     return ss.str();
   }
-
 };
 }  // namespace cse

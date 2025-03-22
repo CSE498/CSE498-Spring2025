@@ -3,8 +3,8 @@
  * @author Rahul B
  */
 
+#include <cse/DataMap.hpp>
 #include "../../third-party/Catch/single_include/catch2/catch.hpp"
-#include <cse/DataMap.h>
 
 TEST_CASE("DataMap Default Constructor Test", "[DataMap]") {
   cse::DataMap data_map;

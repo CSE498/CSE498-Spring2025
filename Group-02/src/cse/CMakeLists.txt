@@ -12,7 +12,8 @@ set(
     ${PROJECT_SOURCE_DIR}/include/cse/StateGrid.h
     ${PROJECT_SOURCE_DIR}/include/cse/StateGridPosition.h
     ${PROJECT_SOURCE_DIR}/include/cse/AuditedVector.h
-    ${PROJECT_SOURCE_DIR}/include/cse/DataMap.h
+        ${PROJECT_SOURCE_DIR}/include/cse/DataMap.hpp
+    ${PROJECT_SOURCE_DIR}/include/cse/AdvancedDataMap.hpp
 )
 
 set(
@@ -22,6 +23,7 @@ set(
     StateGridPosition.cpp
     AuditedVector.cpp
     DataMap.cpp
+    AdvancedDataMap.cpp
 )
 
 # Add the library target

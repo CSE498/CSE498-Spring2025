@@ -3,7 +3,7 @@
 * @author Rahul Baragur
 */
 
-#include <cse/DataMap.h>
+#include <cse/DataMap.hpp>
 
 namespace cse {
 
@@ -15,18 +15,6 @@ namespace cse {
   for (const auto& pair : initial) {
     m_map[pair.first] = pair.second;
   }
-}
-
-/**
-* Check if key is within the DataMap
-* @param name std::string name to be found
-* @return bool if key exists or not
- *
- * (For grading purposes of initial specs, this function function was renamed from keyContains to better fit naming
- * convention)
-*/
-bool DataMap::contains(const std::string& name) const {
-  return (m_map.find(name) != m_map.end());
 }
 
 /**

@@ -8,15 +8,19 @@
 #include <iostream>
 #include <map>
 #include <utility>
+#include <fstream>
+#include <filesystem>
+#include <sstream>
 #include "cse/StateGridPosition.h"
 namespace cse {
 
-/**
- * @brief Contructor for StateGrid object
- * @param diff string representing requested difficulty
- */
-StateGrid::StateGrid(const std::string& diff) {
-  load_map(diff);
+///NOTE: Used ChatGPT for syntax for this overload
+///Chat link: https://chatgpt.com/share/67d227cf-5f50-8001-86f4-494a0f71a7ea
+std::ostream& operator<<(std::ostream& os, const cse::AuditedVector<std::string>& grid) {
+  for (const auto& row : grid) {
+    os << row << "\n";
+  }
+  return os;
 }
 
 /**
@@ -26,10 +30,7 @@ StateGrid::StateGrid(const std::string& diff) {
 ///unless we decide not to implement a better visual element to display our game.
 void StateGrid::display_grid() {
   assert(!m_grid.empty() && "m_grid is empty and cannot display");
-
-  for (const std::string& line : m_grid) {
-    std::cout << line << "\n";
-  }
+  std::cout<< &m_grid;
 }
 
 /**
@@ -54,13 +55,41 @@ bool StateGrid::set_state(std::pair<int, int> new_position, std::pair<int, int> 
  * @return vector of strings holding info about state
  */
 std::vector<std::string> StateGrid::define_state(char state) {
-  auto possible_state = m_dictionary.find(state);
-  assert(possible_state != m_dictionary.end() && "This state is not in the map!");
-  return m_dictionary.at(state);
+  assert(m_dictionary.find(state) && "This state is not in the map!");
+  return m_dictionary.get_info(state);
 }
-///REVIEW COMMENT: A review comment was made to add std::optional for this function in the case where no
-/// StateGrid state was found, but I do not believe this necessary as the assert checks
-/// if the row,col is within bounds which will guarantee a StateGrid state.
+/**
+ * Changes properties of specified states (e.g. "Open" to "Closed" traversability)
+ * @param changestate state to alter
+ * @param property property to change
+ * @param changeprop new editied property
+ */
+void StateGrid::set_condition(char changestate, std::string property, std::string changeprop)
+{
+  assert(m_dictionary.find(changestate) && "This state is not in the map!");
+  m_dictionary.change_property(changestate,property,std::move(changeprop));
+}
+
+/**
+ * This removes the specified states/conditions from an object
+ * @param changestate state to alter
+ * @param property property to change
+ */
+void StateGrid::remove_conditions(char changestate, std::string property)
+{
+    assert(m_dictionary.find(changestate) && "This state is not in the map!");
+    std::string tempstring = property;
+    ///need to remove the property from the state
+}
+/**
+ * Will be called from set_state, and makes calls depending on most recent agent move
+ * and the properties of the new agent state
+ */
+void StateGrid::find_properties()
+{
+
+}
+
 /**
  * @brief Returns the state of a grid position
  * @param row row of position
@@ -80,7 +109,7 @@ char StateGrid::get_state(int row, int col) {
 bool StateGrid::validate_position(std::pair<int, int> move) {
   assert(move.first < m_rows && move.second < m_cols && "This move is out of bounds");
   char validate = m_grid[move.first][move.second];
-  return (m_dictionary.find(validate) != m_dictionary.end() && m_dictionary.at(validate)[1]=="Open");
+  return (m_dictionary.find(validate) && m_dictionary.traversable(validate));
 }
 
 /**
@@ -104,16 +133,43 @@ std::vector<std::pair<int,int>> StateGrid::find_moves(int row, int col) {
  * @brief sets m_grid to specified map
  * @param diff string to choose map of specified difficulty
  */
+///Used ChatGPT for file loading syntax: https://chatgpt.com/share/67da2af9-a22c-8001-8a07-ff125bba08e7
 void StateGrid::load_map(const std::string& diff) {
-  std::map<std::string, std::vector<std::string>> maps = {
-      {"test", {"#####", "# P #", "##X##", "## ##", "#0  #", "#####"}}}; ///Could add functionality to load in a map from separate file
-  if (maps.find(diff) != maps.end()) {
-    m_grid = maps[diff];
-  } else {                                          ///<< If wrong map input, default to test map
-    m_grid = maps["test"];
+
+  ///Currently no check for incorrect filename other than thrown exception
+  std::string filename = diff + ".csv";
+  std::ifstream file(filename);
+  cse::AuditedVector<std::string> pregrid;
+
+  if(!file.is_open())
+  {
+    throw std::runtime_error("File could not be opened: " + filename);
   }
+
+  std::string line;
+  while(std::getline(file,line))
+  {
+    pregrid.push_back(line);
+  }
+  file.close();
+
+  m_grid = pregrid;
   m_cols = static_cast<int>(m_grid[0].size());
   m_rows = static_cast<int>(m_grid.size());
+
 }
+
+/**
+ * @brief iterates through each cell and applies the passed function or lambda
+ * @param func function or lambda to be applied to each cell
+ */
+void StateGrid::modify_all_cells(const std::function<void(int, int, char&)> &func) {
+  for (int i = 0; i < m_rows; ++i) {
+    for (int j = 0; j < m_cols; ++j) {
+      func(i, j, m_grid[i][j]);
+    }
+  }
+}
+
 
 }  // namespace cse
